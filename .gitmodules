@@ -1,0 +1,4 @@
+[submodule "nixpkgs"]
+	path = nixpkgs
+	url = ssh://git@github.com/mmlb/nixpkgs
+	branch = working
