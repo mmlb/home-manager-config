@@ -117,18 +117,21 @@
   }
   '';
 
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = false;
+  };
+  programs.fzf = {
+    enable = true;
+  };
+  programs.home-manager = {
+    enable = true;
+  };
+
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
 
-  #programs.sway.enable = true;
-  programs.home-manager = {
-    enable = true;
-  };
-  programs.direnv = {
-    enable = true;
-    enableFishIntegration = false;
-  };
 }
