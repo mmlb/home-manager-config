@@ -10,8 +10,10 @@
     colordiff
     direnv
     docker_compose
+    duperemove
     elvish
     entr
+    file
     firefox-beta-bin
     font-manager
     freetype
@@ -25,9 +27,11 @@
     gitAndTools.gitstatus
     gitFull
     gitg
+    gnome3.simple-scan
     gnumake
     gnupg
     go
+    go-2fa
     gotools
     grim
     gron
@@ -36,15 +40,19 @@
     htop
     htop
     i3blocks
+    i3status-rust
     inetutils
     inkscape
     ipcalc
+    ipfs
     ipmitool
     jo
     jq
+    kakoune
     keybase
     libarchive
     libjpeg_turbo
+    light
     lshw
     mako
     meld
@@ -63,17 +71,21 @@
     rsync
     shellcheck
     socat
+    sshpass
     sway
     swayidle
     swaylock
+    tmux
     transmission-gtk
     tree
+    vim
     vlc
     #waybar
     wget
+    wireshark-qt
     xclip
     xwayland
-    #zoom-us
+    zoom-us
   ];
 
   home.file.".config/nixpkgs/config.nix".text = ''
