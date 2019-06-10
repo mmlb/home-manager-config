@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config = { allowUnfree = true; };
 
   home.packages = with pkgs; [
     alacritty
@@ -111,22 +109,18 @@
     }
   '';
   home.file.".config/nixpkgs/config.nix".text = ''
-  {
-    allowUnfree = true;
-    android_sdk.accept_license = true;
-  }
+    {
+      allowUnfree = true;
+      android_sdk.accept_license = true;
+    }
   '';
 
   programs.direnv = {
     enable = true;
     enableFishIntegration = false;
   };
-  programs.fzf = {
-    enable = true;
-  };
-  programs.home-manager = {
-    enable = true;
-  };
+  programs.fzf = { enable = true; };
+  programs.home-manager = { enable = true; };
 
   services.gpg-agent = {
     enable = true;
