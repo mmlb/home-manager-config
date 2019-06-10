@@ -74,6 +74,12 @@
     #zoom-us
   ];
 
+  home.file.".config/nixpkgs/config.nix".text = ''
+    {
+      allowUnfree = true;
+    }
+  '';
+
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 1800;
