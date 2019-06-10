@@ -88,6 +88,28 @@
     zoom-us
   ];
 
+  home.file.".config/direnv/direnvrc".text = ''
+    use_nix() {
+        eval "$(lorri direnv)"
+
+        found=false
+        self="$(readlink -e "/proc/$$/cwd")"
+        for lpid in $(pgrep -xf "lorri watch"); do
+                lpwd="$(readlink -e "/proc/$lpid/cwd")"
+                if [[ "$lpwd" == "$self" ]]; then
+                        found=true
+                        break
+                fi
+        done
+
+        if [[ $found == false ]]; then
+                lorri watch 2>/dev/null 1>/dev/null &
+                pid=$!
+                echo "started lorri watch with pid $pid"
+                disown $pid
+        fi
+    }
+  '';
   home.file.".config/nixpkgs/config.nix".text = ''
   {
     allowUnfree = true;
