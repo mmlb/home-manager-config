@@ -13,6 +13,7 @@
     entr
     file
     firefox-beta-bin
+    flootty
     font-manager
     freetype
     fzf
