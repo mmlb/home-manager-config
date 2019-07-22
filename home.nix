@@ -69,6 +69,7 @@
     rofi
     rsync
     shellcheck
+    shfmt
     socat
     sshpass
     sway
