@@ -23,6 +23,7 @@
     gimp
     git-crypt
     git-lfs
+    git-revise
     gitAndTools.diff-so-fancy
     gitAndTools.git-absorb
     gitAndTools.gitstatus
