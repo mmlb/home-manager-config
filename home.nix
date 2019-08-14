@@ -5,6 +5,8 @@
 
   home.packages = with pkgs; [
     alacritty
+    asciinema
+    blueman
     colordiff
     direnv
     docker_compose
@@ -70,6 +72,7 @@
     rsync
     shellcheck
     shfmt
+    slurp
     socat
     sshpass
     sway
