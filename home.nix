@@ -13,6 +13,8 @@
     duperemove
     elvish
     entr
+    fasd
+    fd
     file
     firefox-beta-bin
     flootty
