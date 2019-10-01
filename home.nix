@@ -42,7 +42,6 @@
     gtk3
     hack-font
     htop
-    htop
     i3blocks
     i3status-rust
     inetutils
@@ -68,6 +67,7 @@
     pasystray
     pavucontrol
     pstree
+    python3
     python3Packages.bpython
     python3Packages.python-language-server
     ripgrep
