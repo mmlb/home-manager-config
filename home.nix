@@ -92,11 +92,6 @@
     zoom-us
   ];
 
-  home.file.".config/direnv/direnvrc".text = ''
-    use_nix() {
-        eval "$(lorri direnv)"
-    }
-  '';
   nixpkgs.config = {
     allowUnfree = true;
     andrdoid_sdk.accept_license = true;
@@ -105,6 +100,11 @@
   programs.direnv = {
     enable = true;
     enableFishIntegration = false;
+    stdlib = ''
+      use_nix() {
+        eval "$(lorri direnv)"
+      }
+    '';
   };
   programs.fzf = { enable = true; };
   programs.home-manager = { enable = true; };
