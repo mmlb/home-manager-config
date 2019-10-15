@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.config = { allowUnfree = true; };
-
   home.packages = with pkgs; [
     alacritty
     asciinema
@@ -99,12 +97,10 @@
         eval "$(lorri direnv)"
     }
   '';
-  home.file.".config/nixpkgs/config.nix".text = ''
-    {
-      allowUnfree = true;
-      android_sdk.accept_license = true;
-    }
-  '';
+  nixpkgs.config = {
+    allowUnfree = true;
+    andrdoid_sdk.accept_license = true;
+  };
 
   programs.direnv = {
     enable = true;
