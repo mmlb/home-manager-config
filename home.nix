@@ -74,6 +74,7 @@ in {
     mtr
     neovim
     nix-update-source
+    nixfmt
     pasystray
     pavucontrol
     pstree
