@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     alacritty
     asciinema
+    bitwarden-cli
     blueman
     colordiff
     direnv
@@ -11,6 +12,7 @@
     duperemove
     elvish
     entr
+    evince
     fasd
     fd
     file
