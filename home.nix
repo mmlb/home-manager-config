@@ -1,6 +1,15 @@
 { pkgs, ... }:
 
-{
+let
+  lorri = import (pkgs.fetchFromGitHub {
+    owner = "target";
+    repo = "lorri";
+    rev = "03f10395943449b1fc5026d3386ab8c94c520ee3";
+    sha256 = "0fcl79ndaziwd8d74mk1lsijz34p2inn64b4b4am3wsyk184brzq";
+  }) { };
+  path = with pkgs; lib.makeSearchPath "bin" [ nix gnutar git ];
+
+in {
   home.packages = with pkgs; [
     alacritty
     asciinema
@@ -56,6 +65,7 @@
     libarchive
     libjpeg_turbo
     light
+    lorri
     lshw
     mako
     meld
@@ -116,7 +126,34 @@
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
+
   services.syncthing.enable = true;
+  #
+  #  systemd.user.sockets.lorri = {
+  #    Unit = { Description = "lorri build daemon"; };
+  #    Socket = { ListenStream = "%t/lorri/daemon.socket"; };
+  #    Install = { WantedBy = [ "sockets.target" ]; };
+  #  };
+  #
+  #  systemd.user.services.lorri = {
+  #    Unit = {
+  #      Description = "lorri build daemon";
+  #      Documentation = "https://github.com/target/lorri";
+  #      ConditionUser = "!@system";
+  #      Requires = "lorri.socket";
+  #      After = "lorri.socket";
+  #      RefuseManualStart = true;
+  #    };
+  #
+  #    Service = {
+  #      ExecStart = "${lorri}/bin/lorri daemon";
+  #      PrivateTmp = true;
+  #      ProtectSystem = "strict";
+  #      WorkingDirectory = "%h";
+  #      Restart = "on-failure";
+  #      Environment = "PATH=${path} RUST_BACKTRACE=1";
+  #    };
+  #  };
 
   xdg.enable = true;
 }
