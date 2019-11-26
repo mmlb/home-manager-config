@@ -131,6 +131,7 @@ in {
     enableSshSupport = true;
   };
 
+  services.pasystray.enable = true;
   services.syncthing.enable = true;
   #
   #  systemd.user.sockets.lorri = {
