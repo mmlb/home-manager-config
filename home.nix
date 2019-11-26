@@ -130,7 +130,6 @@ in {
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
-
   services.pasystray.enable = true;
   services.syncthing.enable = true;
   #
@@ -159,6 +158,5 @@ in {
   #      Environment = "PATH=${path} RUST_BACKTRACE=1";
   #    };
   #  };
-
   xdg.enable = true;
 }
