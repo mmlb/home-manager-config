@@ -64,6 +64,7 @@ in {
     keybase
     libarchive
     libjpeg_turbo
+    libnotify
     light
     lorri
     lshw
@@ -99,8 +100,10 @@ in {
     #waybar
     wget
     wireshark-qt
+    wl-clipboard
     wofi
     xclip
+    xdg-user-dirs
     xwayland
     zoom-us
   ];
