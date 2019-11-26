@@ -82,7 +82,6 @@ in {
     python3Packages.bpython
     python3Packages.python-language-server
     ripgrep
-    rofi
     rsync
     shellcheck
     shfmt
@@ -100,6 +99,7 @@ in {
     #waybar
     wget
     wireshark-qt
+    wofi
     xclip
     xwayland
     zoom-us
