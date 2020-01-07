@@ -36,6 +36,7 @@ in {
     git-crypt
     git-lfs
     git-revise
+    gitAndTools.delta
     gitAndTools.diff-so-fancy
     gitAndTools.git-absorb
     gitAndTools.gitstatus
