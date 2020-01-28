@@ -81,6 +81,7 @@ in {
     nixfmt
     pasystray
     pavucontrol
+    pssh
     pstree
     python3
     python3Packages.bpython
