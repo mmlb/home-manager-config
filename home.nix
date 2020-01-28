@@ -64,6 +64,7 @@ in {
     jq
     kakoune
     keybase
+    kitty
     libarchive
     libjpeg_turbo
     libnotify
