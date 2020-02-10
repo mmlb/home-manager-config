@@ -12,6 +12,7 @@ let
 
 in {
   home.packages = with pkgs; [
+    abduco
     alacritty
     asciinema
     bitwarden-cli
