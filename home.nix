@@ -82,6 +82,7 @@ in {
     nixfmt
     pasystray
     pavucontrol
+    pipewire
     pssh
     pstree
     python3
