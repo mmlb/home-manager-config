@@ -4,9 +4,9 @@ let
   lorri = import (pkgs.fetchFromGitHub {
     owner = "target";
     repo = "lorri";
-    #branch@date: master
-    rev = "7ff97e14e8ecbd84a8c35ed8cb2885691a827d7a";
-    sha256 = "1hv2pll7f0lm7ndygb01019ivhvzjr3nycs4p7x1ndbks6dz5j5n";
+    #branch@date: master@2020-02-06
+    rev = "b2f1fe218ab95ce7c89c4b35644d01c4c1f1b21d";
+    sha256 = "0yliffg3kpmdi2nk1xjhizsnz03djnjj8pw5k3gryz7hh2cyvyx7";
   }) { };
   path = with pkgs; lib.makeSearchPath "bin" [ nix gnutar git ];
 
