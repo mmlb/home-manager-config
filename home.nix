@@ -162,6 +162,16 @@ in {
     enableSshSupport = true;
   };
   services.pasystray.enable = true;
+  services.redshift = {
+    enable = true;
+    package = pkgs.redshift-wlr;
+    latitude = "25.563944250922";
+    longitude = "-80.391474366188";
+    temperature = {
+      day = 5700;
+      night = 3500;
+    };
+  };
   services.syncthing.enable = true;
 
   systemd.user.sockets.lorri = {
