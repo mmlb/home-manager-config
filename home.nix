@@ -82,6 +82,7 @@ in {
     neovim
     nix-update-source
     nixfmt
+    nodejs # for nvim Plug 'iamcco/markdown-preview.nvim'
     pasystray
     pavucontrol
     pipewire
@@ -113,6 +114,7 @@ in {
     xclip
     xdg-user-dirs
     xwayland
+    yarn # for nvim Plug 'iamcco/markdown-preview.nvim'
     zoom-us
   ];
 
