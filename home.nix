@@ -44,7 +44,7 @@ in {
     gitAndTools.diff-so-fancy
     gitAndTools.gh
     gitAndTools.git-absorb
-    #gitAndTools.gitstatus
+    gitAndTools.gitstatus
     gitFull
     gitg
     gnome3.simple-scan
@@ -83,7 +83,7 @@ in {
     mtr
     neovim
     nix-update-source
-    #nixfmt
+    nixfmt
     nodejs # for nvim Plug 'iamcco/markdown-preview.nvim'
     pasystray
     pavucontrol
