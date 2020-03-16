@@ -87,6 +87,7 @@ in {
     nodejs # for nvim Plug 'iamcco/markdown-preview.nvim'
     pasystray
     pavucontrol
+    pigz
     pipewire
     pssh
     pstree
