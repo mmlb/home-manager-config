@@ -9,7 +9,8 @@ let
     sha256 = "0yliffg3kpmdi2nk1xjhizsnz03djnjj8pw5k3gryz7hh2cyvyx7";
   }) { };
   path = with pkgs; lib.makeSearchPath "bin" [ nix gnutar git ];
-  mozilla-overlays = builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
+  mozilla-overlays = builtins.fetchTarball
+    "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
 
 in {
   home.packages = with pkgs; [
