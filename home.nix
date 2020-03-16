@@ -16,7 +16,9 @@ in {
     abduco
     alacritty
     asciinema
+    bat
     bitwarden-cli
+    broot
     blueman
     colordiff
     direnv
