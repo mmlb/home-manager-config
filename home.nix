@@ -121,28 +121,6 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     andrdoid_sdk.accept_license = true;
-    packageOverrides = pkgs: {
-      python3 = pkgs.python3.override {
-        packageOverrides = self: super:
-          let
-            importlib-metadata = super.importlib-metadata.overridePythonAttrs
-              (old: rec {
-                version = "1.3.0";
-                src = super.fetchPypi {
-                  pname = "importlib_metadata";
-                  inherit version;
-                  sha256 =
-                    "0ibvvqajphwdclbr236gikvyja0ynvqjlix38kvsabgrf0jqafh7";
-                };
-              });
-          in {
-            tox = super.tox.overridePythonAttrs (old: rec {
-              catchConflicts = false;
-              buildInputs = old.buildInputs ++ [ importlib-metadata ];
-            });
-          };
-      };
-    };
   };
 
   programs.direnv = {
