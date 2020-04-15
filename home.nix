@@ -105,6 +105,7 @@ in {
     tree
     vim
     vlc
+    wf-recorder
     #waybar
     wget
     wireshark-qt
