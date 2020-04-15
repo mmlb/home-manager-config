@@ -123,6 +123,10 @@ in {
     andrdoid_sdk.accept_license = true;
   };
 
+  xdg.configFile."nix/nix.conf".text = ''
+  cores = 0
+  '';
+
   programs.direnv = {
     enable = true;
     enableFishIntegration = false;
