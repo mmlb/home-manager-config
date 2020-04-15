@@ -155,7 +155,6 @@ in {
       night = 3500;
     };
   };
-  services.syncthing.enable = true;
 
   systemd.user.sockets.lorri = {
     Unit = { Description = "lorri build daemon"; };
