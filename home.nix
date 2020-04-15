@@ -25,7 +25,8 @@ in {
     fasd
     fd
     file
-    latest.firefox-nightly-bin
+    firefox-bin
+    #latest.firefox-nightly-bin
     flootty
     font-manager
     freetype
@@ -116,7 +117,7 @@ in {
     zoom-us
   ];
 
-  nixpkgs.overlays = [ (import "${mozilla-overlays}") ];
+  #nixpkgs.overlays = [ (import "${mozilla-overlays}") ];
   nixpkgs.config = {
     allowUnfree = true;
     andrdoid_sdk.accept_license = true;
