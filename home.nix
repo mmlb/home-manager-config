@@ -105,6 +105,7 @@ in {
     transmission-gtk
     tree
     vim
+    v4l-utils
     vlc
     wf-recorder
     #waybar
