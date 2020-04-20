@@ -108,7 +108,7 @@ in {
     v4l-utils
     vlc
     wf-recorder
-    #waybar
+    waybar
     wget
     wireshark-qt
     wl-clipboard
