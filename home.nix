@@ -71,7 +71,6 @@ in {
     libjpeg_turbo
     libnotify
     light
-    lorri
     lshw
     mako
     meld
@@ -177,6 +176,7 @@ in {
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
+  services.lorri.enable = true;
   services.pasystray.enable = true;
   services.redshift = {
     enable = true;
@@ -189,30 +189,5 @@ in {
     };
   };
 
-  systemd.user.sockets.lorri = {
-    Unit = { Description = "lorri build daemon"; };
-    Socket = { ListenStream = "%t/lorri/daemon.socket"; };
-    Install = { WantedBy = [ "sockets.target" ]; };
-  };
-
-  systemd.user.services.lorri = {
-    Unit = {
-      Description = "lorri build daemon";
-      Documentation = "https://github.com/target/lorri";
-      ConditionUser = "!@system";
-      Requires = "lorri.socket";
-      After = "lorri.socket";
-      RefuseManualStart = true;
-    };
-
-    Service = {
-      ExecStart = "${lorri}/bin/lorri daemon";
-      PrivateTmp = true;
-      ProtectSystem = "strict";
-      WorkingDirectory = "%h";
-      Restart = "on-failure";
-      Environment = "PATH=${path} RUST_BACKTRACE=1";
-    };
-  };
   xdg.enable = true;
 }
