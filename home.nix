@@ -118,6 +118,7 @@ in {
     wofi
     xclip
     xdg-user-dirs
+    xdg_utils
     xwayland
     yarn # for nvim Plug 'iamcco/markdown-preview.nvim'
     zoom-us
