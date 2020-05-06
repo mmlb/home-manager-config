@@ -54,6 +54,7 @@ in {
     gtk3
     hack-font
     htop
+    hyperfine
     i3blocks
     i3status-rust
     inetutils
