@@ -82,6 +82,7 @@ in {
     nix-update-source
     nixfmt
     nodejs # for nvim Plug 'iamcco/markdown-preview.nvim'
+    pamixer
     pasystray
     pavucontrol
     pigz
