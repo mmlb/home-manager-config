@@ -130,64 +130,67 @@ in {
     andrdoid_sdk.accept_license = true;
   };
 
-  xdg.configFile."nix/nix.conf".text = ''
-    cores = 0
-  '';
+  programs = {
+    direnv = {
+      enable = true;
+      enableFishIntegration = false;
+      stdlib = ''
+        use_nix() {
+                eval "$(lorri direnv)"
+        }
 
-  programs.direnv = {
-    enable = true;
-    enableFishIntegration = false;
-    stdlib = ''
-      use_nix() {
-              eval "$(lorri direnv)"
-      }
+        layout_python-venv() {
+                local python=$${1:-python3}
+                [[ $# -gt 0 ]] && shift
+                unset PYTHONHOME
+                if [[ -n $VIRTUAL_ENV ]]; then
+                        VIRTUAL_ENV=$(realpath "$${VIRTUAL_ENV}")
+                else
+                        local python_version
+                        python_version=$("$python" -c "import platform; print(platform.python_version())")
+                        if [[ -z $python_version ]]; then
+                                log_error "Could not detect Python version"
+                                return 1
+                        fi
+                        VIRTUAL_ENV=$PWD/.direnv/python-venv-$python_version
+                fi
+                export VIRTUAL_ENV
+                if [[ ! -d $VIRTUAL_ENV ]]; then
+                        log_status "no venv found; creating $VIRTUAL_ENV"
+                        "$python" -m venv "$VIRTUAL_ENV"
+                fi
 
-      layout_python-venv() {
-              local python=$${1:-python3}
-              [[ $# -gt 0 ]] && shift
-              unset PYTHONHOME
-              if [[ -n $VIRTUAL_ENV ]]; then
-                      VIRTUAL_ENV=$(realpath "$${VIRTUAL_ENV}")
-              else
-                      local python_version
-                      python_version=$("$python" -c "import platform; print(platform.python_version())")
-                      if [[ -z $python_version ]]; then
-                              log_error "Could not detect Python version"
-                              return 1
-                      fi
-                      VIRTUAL_ENV=$PWD/.direnv/python-venv-$python_version
-              fi
-              export VIRTUAL_ENV
-              if [[ ! -d $VIRTUAL_ENV ]]; then
-                      log_status "no venv found; creating $VIRTUAL_ENV"
-                      "$python" -m venv "$VIRTUAL_ENV"
-              fi
-
-              PATH="$${VIRTUAL_ENV}/bin:$${PATH}"
-              export PATH
-      }
-    '';
+                PATH="$${VIRTUAL_ENV}/bin:$${PATH}"
+                export PATH
+        }
+      '';
+    };
+    fzf.enable = true;
+    home-manager.enable = true;
   };
-  programs.fzf = { enable = true; };
-  programs.home-manager = { enable = true; };
 
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = true;
-  };
-  services.lorri.enable = true;
-  services.pasystray.enable = true;
-  services.redshift = {
-    enable = true;
-    package = pkgs.redshift-wlr;
-    latitude = "25.563944250922";
-    longitude = "-80.391474366188";
-    temperature = {
-      day = 5700;
-      night = 3500;
+  services = {
+    lorri = {
+      enable = true;
+      package = lorri;
+    };
+    pasystray.enable = true;
+    redshift = {
+      enable = true;
+      package = pkgs.redshift-wlr;
+      latitude = "25.563944250922";
+      longitude = "-80.391474366188";
+      temperature = {
+        day = 5700;
+        night = 3500;
+      };
     };
   };
 
-  xdg.enable = true;
+  xdg = {
+    enable = true;
+    configFile."nix/nix.conf".text = ''
+      cores = 0
+    '';
+  };
 }
