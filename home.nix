@@ -52,7 +52,6 @@ in {
     grim
     gron
     gtk3
-    hack-font
     htop
     hyperfine
     i3blocks
