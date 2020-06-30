@@ -90,7 +90,7 @@ in {
     pulseeffects
     python3
     python3Packages.bpython
-    #python3Packages.python-language-server
+    python3Packages.python-language-server
     ripgrep
     rofi
     rsync
