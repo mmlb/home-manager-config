@@ -101,6 +101,7 @@ in {
     slurp
     socat
     sshpass
+    tmate
     tmux
     transmission-gtk
     tree
