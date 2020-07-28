@@ -101,9 +101,6 @@ in {
     slurp
     socat
     sshpass
-    sway
-    swayidle
-    swaylock
     tmux
     transmission-gtk
     tree
@@ -119,8 +116,6 @@ in {
     xclip
     xdg-user-dirs
     xdg_utils
-    xorg.xinit
-    xwayland
     yarn # for nvim Plug 'iamcco/markdown-preview.nvim'
     zoom-us
   ];
