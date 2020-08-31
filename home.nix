@@ -33,6 +33,7 @@ in {
     fzf
     gettext
     gimp
+    git
     git-crypt
     git-lfs
     git-revise
@@ -41,7 +42,6 @@ in {
     gitAndTools.git-absorb
     gitAndTools.gitstatus
     gitAndTools.hub
-    gitFull
     gitg
     gnome3.simple-scan
     gnumake
@@ -86,6 +86,7 @@ in {
     pavucontrol
     pigz
     pipewire
+    perl # needed by diff-so-fancy
     pssh
     pstree
     pulseeffects
