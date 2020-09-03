@@ -52,6 +52,7 @@ in {
     grim
     gron
     gtk3
+    hexyl
     htop
     hyperfine
     i3blocks
