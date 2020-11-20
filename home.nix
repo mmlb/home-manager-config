@@ -73,7 +73,6 @@ in {
     libnotify
     light
     lshw
-    mako
     meld
     mosh
     mpv
@@ -167,6 +166,7 @@ in {
     };
     fzf.enable = true;
     home-manager.enable = true;
+    mako.enable = true;
   };
 
   services = {
