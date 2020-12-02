@@ -123,6 +123,75 @@ in {
     zoom-us
   ];
 
+  home.file.".elvish/rc.elv".text = ''
+    config-files = [ ~/.ssh/config ~/.ssh/packet-ssh-config /etc/ssh/ssh_config /etc/ssh_config ]
+
+    use direnv
+    #use github.com/zzamboni/elvish-completions/git
+    use github.com/zzamboni/elvish-completions/ssh
+    use github.com/zzamboni/elvish-modules/long-running-notifications
+    use github.com/xiaq/edit.elv/smart-matcher
+
+    smart-matcher:apply
+
+    #use github.com/zzamboni/elvish-themes/chain
+
+    long-running-notifications:never-notify = [
+      bat
+      emacs
+      kak
+      less
+      more
+      nano
+      nvim
+      vi
+      vim
+    ]
+    #long-running-notifications:notifier = [cmd duration start]{
+    #  notify-send -t 5000 "Command Finished\nDuration "$duration"\nCommand  "$cmd
+    #}
+    long-running-notifications:threshold = 20
+
+    fn cat [@a]{ bat $@a }
+    fn commit-nixpkgs { echo "update\n\n"(nix-github-compare|slurp) | git commit -F- . }
+    fn cp [@a]{ e:cp --reflink=auto $@a }
+    fn dc [@a]{ docker-compose $@a }
+    fn grep [@a]{ e:grep --color=auto $@a }
+    fn ls [@a]{ e:ls --color=auto $@a }
+    fn nix-shell [@a]{ e:nix-shell --command elvish $@a }
+    fn please [@a]{ sudo $@a }
+    fn ssh [@a]{ E:TERM=xterm e:ssh $@a }
+    fn tar [@a]{ bsdtar $@a }
+    fn tf [@a]{ terraform $@a }
+    fn tree [@a]{ broot $@a }
+    fn vim [@a]{ nvim $@a }
+    fn xargs [@a]{ e:xargs -I "{}" -n 1 -P (nproc) $@a }
+    fn zsh [@a]{ set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a }
+    fn k [@a]{ kubectl $@a }
+    #fn debugpod[@a] { kubectl run -i --tty --rm debug --image=busybox --restart=Never -- /bin/bash $@a }
+    fn kgetall { kubectl get (kubectl api-resources --verbs=list -o name | paste -sd, -) --ignore-not-found --show-kind -o wide '$NS' }
+    #fn decode_kubernetes_secret[@a] { kubectl get secret $@a -o json | jq '.data | map_values(@base64d)' }
+    fn ds { decode_kubernetes_secret }
+
+    -override-wcwidth 🦀 2
+
+    edit:prompt = {
+      styled "\n[" red;
+      styled (tilde-abbr $pwd) bright-yellow;
+      styled ']' red;
+
+      styled "─[" red
+      styled (whoami) bright-green
+      styled "@" bright-black
+      styled (hostname) cyan
+      styled "]> " red
+
+      put "\n";
+    }
+
+    edit:rprompt = {  }
+  '';
+
   #nixpkgs.overlays = [ (import "${mozilla-overlays}") ];
   nixpkgs.config = {
     allowUnfree = true;
