@@ -21,6 +21,7 @@ in {
     duperemove
     elvish
     entr
+    eternal-terminal
     evince
     fasd
     fd
