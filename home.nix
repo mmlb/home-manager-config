@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
-let
-  lorri = (import ./lorri.nix { inherit pkgs; }) { };
-  path = with pkgs; lib.makeSearchPath "bin" [ nix gnutar git ];
-  mozilla-overlays = builtins.fetchTarball
-    "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
-
+let lorri = (import ./lorri.nix { inherit pkgs; }) { };
 in {
   home.packages = with pkgs; [
     abduco
@@ -192,7 +187,6 @@ in {
     edit:rprompt = {  }
   '';
 
-  #nixpkgs.overlays = [ (import "${mozilla-overlays}") ];
   nixpkgs.config = {
     allowUnfree = true;
     andrdoid_sdk.accept_license = true;
