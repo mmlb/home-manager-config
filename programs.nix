@@ -11,6 +11,78 @@
       '';
     };
     fzf.enable = true;
+    git = {
+      enable = true;
+      aliases = {
+        hub = "!${pkgs.gitAndTools.hub}/bin/hub";
+        lg =
+          "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        log1 = "log --oneline";
+        log1m = "log --oneline master..";
+        log1r = "log --oneline --reverse";
+        log1rm = "log --oneline --reverse master..";
+        mt = "!mergetool";
+      };
+      delta = {
+        enable = false;
+        options = { };
+      };
+      extraConfig = {
+        advice.implicitIdentity = false;
+        branch.autoSetupRebase = "always";
+        checkout.defaultRemote = "origin";
+        color.ui = true;
+        commit.verbose = true;
+        core.pager = "delta --diff-so-fancy";
+        diff = {
+          renameLimit = 2048;
+          algorithm = "histogram";
+          renames = "copies";
+          submodule = "log";
+        };
+        difftool.prompt = "no";
+        help.autoCorrect = 1;
+        interactive.diffFilter = "delta --diff-so-fancy --color-only";
+        log.date = "auto:human";
+        merge = {
+          log = true;
+          tool = "meld";
+          renameLimit = 2048;
+        };
+        mergetool = {
+          keepBackup = false;
+          prompt = "no";
+        };
+        pager = {
+          diff = "delta --diff-so-fancy";
+          show = "delta --diff-so-fancy";
+        };
+        push = {
+          default = "current";
+          followTags = true;
+        };
+        rebase = {
+          autoSquash = true;
+          stat = true;
+        };
+        submodule.fetchJobs = 8;
+        url."ssh://github.com/".insteadOf = "https://github.com/";
+        user.useConfigOnly = true;
+      };
+      includes = [
+        {
+          contents.user.email = "mmendez@equinix.com";
+          condition = "gitdir:github.com/packethost/";
+        }
+        {
+          contents.user.email = "mmendez@equinix.com";
+          condition = "gitdir:github.com/tinkerbell/";
+        }
+      ];
+      lfs.enable = true;
+      userEmail = "mmendez534@gmail.com";
+      userName = "Manuel Mendez";
+    };
     kakoune = {
       enable = true;
       config = {
