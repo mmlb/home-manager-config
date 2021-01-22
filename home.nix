@@ -22,8 +22,7 @@ in {
     fasd
     fd
     file
-    firefox-bin
-    #latest.firefox-nightly-bin
+    firefox-wayland
     flootty
     font-manager
     freetype
