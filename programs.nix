@@ -145,6 +145,72 @@
     };
     home-manager.enable = true;
     mako.enable = true;
+    ssh = {
+      enable = true;
+      compression = true;
+      controlMaster = "auto";
+      controlPath = "~/.ssh/control-master/%C.sock";
+      controlPersist = "15m";
+      extraConfig = ''
+        KexAlgorithms = diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+        PubKeyAuthentication = no
+      '';
+      extraOptionOverrides = {
+        "Include" = "~/.ssh/packet-ssh-config/config_packet";
+      };
+      matchBlocks = {
+        "*" = {
+          identitiesOnly = true;
+          extraOptions = { };
+        };
+        "*.packet.net *.packet.rocks *.packethost.net" = {
+          sendEnv = [ "TERM=xterm" ];
+        };
+        "*.lan *.local" = {
+          identityFile = [ "~/.ssh/id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+        };
+        "bartender" = {
+          hostname = "bartender.dixiepineacres.com";
+          identityFile = [ "~/.ssh/id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "root";
+        };
+        "github.com gist.github.com" = {
+          identityFile = [ "~/.ssh/github_id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "git";
+        };
+        "gitlab.alpinelinux.org" = {
+          identityFile = [ "~/.ssh/gitlab.alpinelinux.org" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "git";
+        };
+        "nix350 nix350.lan nix710 nix710.lan" = {
+          identityFile = [ "~/.ssh/id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "manny";
+        };
+        "router.lan router" = {
+          hostname = "192.168.1.1";
+          identityFile = [ "~/.ssh/id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "root";
+        };
+        "dev" = {
+          hostname = "dec786eb.packethost.net";
+          identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "manny";
+        };
+        "rdev" = {
+          hostname = "dec786eb.packethost.net";
+          identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "root";
+        };
+      };
+    };
     waybar = {
       enable = true;
       settings = [{
