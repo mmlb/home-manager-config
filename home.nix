@@ -98,6 +98,7 @@ in {
     slurp
     socat
     sshpass
+    sway-contrib.grimshot
     tmate
     tmux
     transmission-gtk
