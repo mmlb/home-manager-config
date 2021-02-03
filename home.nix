@@ -100,6 +100,7 @@ in {
     rsync
     shellcheck
     shfmt
+    signal-desktop
     slurp
     socat
     sshpass
