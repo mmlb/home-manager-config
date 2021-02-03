@@ -1,6 +1,12 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-let lorri = (import ./lorri.nix { inherit pkgs; }) { };
+let
+  lorri = (import ./lorri.nix { inherit pkgs; }) { };
+  prependPaths = [
+    "${config.home.homeDirectory}/bin"
+    "${config.home.homeDirectory}/go/bin"
+    "${config.home.homeDirectory}/.local/bin"
+  ];
 in {
   imports = [ ./programs.nix ];
   home.packages = with pkgs; [
@@ -193,6 +199,17 @@ in {
 
       edit:rprompt = {  }
     '';
+  };
+  home.sessionVariables = {
+    EDITOR = "${pkgs.kakoune}/bin/kak";
+    KEYTIMEOUT = "1";
+    LESS = "AFRSX";
+    MANPAGER = "nvim -c 'set ft=man' -";
+    VISUAL = "${config.home.sessionVariables.EDITOR}";
+    XDG_CURRENT_DESKTOP = "sway";
+    XDG_SESSION_TYPE = "wayland";
+    XKB_DEFAULT_OPTIONS = "ctrl:nocaps";
+    PATH = "${lib.strings.concatStringsSep ":" prependPaths}:$PATH";
   };
 
   nixpkgs.config = {
