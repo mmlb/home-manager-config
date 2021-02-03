@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let lorri = (import ./lorri.nix { inherit pkgs; }) { };
 in {
@@ -119,6 +119,12 @@ in {
   ];
 
   home.file = {
+    ".cargo/config.toml".text = ''
+      [net]
+      git-fetch-with-cli = true
+      [install]
+      root = ${config.home.homeDirectory}/.local/bin
+    '';
     ".elvish/rc.elv".text = ''
       config-files = [ ~/.ssh/config ~/.ssh/packet-ssh-config /etc/ssh/ssh_config /etc/ssh_config ]
 
