@@ -46,7 +46,6 @@ in {
     go
     go-2fa
     gotools
-    grim
     gron
     gtk3
     hexyl
