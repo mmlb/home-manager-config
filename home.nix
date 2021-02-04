@@ -214,7 +214,6 @@ in {
   };
 
   nixpkgs.config = {
-    allowUnfree = true;
     andrdoid_sdk.accept_license = true;
   };
 
