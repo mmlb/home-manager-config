@@ -122,7 +122,6 @@ in {
     xdg-user-dirs
     xdg_utils
     yarn # for nvim Plug 'iamcco/markdown-preview.nvim'
-    zoom-us
     zutty
   ];
 
