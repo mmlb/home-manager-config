@@ -104,6 +104,7 @@ in {
     slurp
     socat
     sshpass
+    sway
     sway-contrib.grimshot
     tmate
     tmux
