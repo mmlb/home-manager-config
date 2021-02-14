@@ -19,7 +19,6 @@ in {
     blueman
     colordiff
     direnv
-    docker_compose
     duperemove
     elvish
     entr
