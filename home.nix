@@ -90,7 +90,7 @@ in {
     perl # needed by diff-so-fancy
     pssh
     pstree
-    pulseeffects
+    pulseeffects-pw
     python3
     python3Packages.bpython
     python3Packages.python-language-server
