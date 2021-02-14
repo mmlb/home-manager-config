@@ -214,9 +214,7 @@ in {
     PATH = "${lib.strings.concatStringsSep ":" prependPaths}:$PATH";
   };
 
-  nixpkgs.config = {
-    andrdoid_sdk.accept_license = true;
-  };
+  nixpkgs.config = { andrdoid_sdk.accept_license = true; };
 
   services = {
     lorri = {
