@@ -1,12 +1,13 @@
 { config, lib, pkgs, ... }:
-
 let
   lorri = (import ./lorri.nix { inherit pkgs; }) { };
+  zutty = (import ./zutty.nix) { inherit pkgs; };
   prependPaths = [
     "${config.home.homeDirectory}/bin"
     "${config.home.homeDirectory}/go/bin"
     "${config.home.homeDirectory}/.local/bin"
   ];
+
 in {
   imports = [ ./programs.nix ];
   home.packages = with pkgs; [
