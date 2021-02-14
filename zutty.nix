@@ -1,12 +1,12 @@
 { pkgs, ... }:
 pkgs.stdenv.mkDerivation rec {
   pname = "zutty";
-  version = "unstable-g${builtins.substring 0 9 src.rev}";
+  version = "unstable-2021-02-13g${builtins.substring 0 9 src.rev}";
   src = pkgs.fetchFromGitHub rec {
     owner = "tomszilagyi";
     repo = "${pname}";
-    rev = "aea41a1353af38fb1c4a871a0c42a3d2c134da07";
-    sha256 = "19ja9aj5wj8fz533zzf6ir7bn10rwr4d5fgwlbkc153shxphhmrz";
+    rev = "4c05587b5893bdffcfa34362a74b4f79c9c8cb38";
+    sha256 = "0dz475df88hcza9qxjpgxz5vqnbacxm57kw5gc1l58mc6d3sfg10";
   };
   nativeBuildInputs = with pkgs; [ pkgconfig python wafHook ];
   buildInputs = with pkgs; [ xorg.libXaw freetype libglvnd ];
