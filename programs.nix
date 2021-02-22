@@ -87,14 +87,25 @@
       enable = true;
       config = {
         colorScheme = "gruvbox";
-        /* hooks = [{
-             name = "BufWritePost";
-             group = "format";
-             option = ".*\\.go";
-             commands = ''
-               %{ evaluate-commands %sh{ goimports -e -w "$kak_buffile" }; edit!}'';
-           }];
-        */
+        hooks = [
+          {
+            name = "BufWritePost";
+            group = "format";
+            option = ".*\\.go";
+            commands = ''evaluate-commands %sh{ goimports -e -w "$kak_buffile" }; edit!'';
+          }
+          {
+            name = "BufWritePost";
+            group = "format";
+            option = ".*\\.sh";
+            commands = ''evaluate-commands %sh{ shfmt -s -w "$kak_buffile" }; edit!'';
+          }
+          {
+            name = "BufOpenFile";
+            option = ".*";
+            commands = "modeline-parse";
+          }
+        ];
         numberLines = {
           enable = true;
           relative = true;
@@ -138,10 +149,6 @@
         lsp-auto-hover-enable
         set-option global lsp_show_hover_format 'printf %s "''${lsp_diagnostics}"'
         set-option global ui_options ncurses_wheel_scroll_amount=1
-
-        #hook -group format global BufWritePost .*\.go %{ evaluate-commands %sh{ goimports -e -w "$kak_buffile" }; edit! }
-        hook -group format global BufWritePost .*\.go %{ evaluate-commands %sh{ goimports -e -w "$kak_buffile" }; edit! }
-        hook -group format global BufWritePost .*\.sh %{ evaluate-commands %sh{ shfmt -s -w "$kak_buffile" }; edit! }
       '';
     };
     home-manager.enable = true;
