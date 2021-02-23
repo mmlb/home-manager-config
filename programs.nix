@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
 
   programs = {
     direnv = {
@@ -104,6 +104,16 @@
             name = "BufOpenFile";
             option = ".*";
             commands = "modeline-parse";
+          }
+          {
+            name = "KakBegin";
+            option = ".*";
+            commands = "try %{ source ${config.home.homeDirectory}/.local/share/kak/kak_history }";
+          }
+          {
+            name = "KakEnd";
+            option = ".*";
+            commands = "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
           }
         ];
         numberLines = {
