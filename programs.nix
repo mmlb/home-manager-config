@@ -94,6 +94,30 @@
             commands = "modeline-parse";
           }
           {
+            name = "BufSetOption";
+            group = "format";
+            option = "filetype=go";
+            commands = ''set-option buffer formatcmd "goimports -e"'';
+          }
+          {
+            name = "BufSetOption";
+            group = "format";
+            option = "filetype=python";
+            commands = ''set-option buffer formatcmd "black -" '';
+          }
+          {
+            name = "BufSetOption";
+            group = "format";
+            option = "filetype=sh";
+            commands = ''set-option buffer formatcmd "shfmt -s" '';
+          }
+          {
+            name = "BufSetOption";
+            group = "format";
+            option = "filetype=yaml";
+            commands = ''set-option buffer formatcmd "prettier --parser=yaml" '';
+          }
+          {
             name = "BufWritePost";
             group = "format";
             option = ".*";
@@ -108,30 +132,6 @@
             name = "KakEnd";
             option = ".*";
             commands = "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
-          }
-          {
-            name = "WinSetOption";
-            group = "format";
-            option = "filetype=go";
-            commands = ''set-option buffer formatcmd "goimports -e"'';
-          }
-          {
-            name = "WinSetOption";
-            group = "format";
-            option = "filetype=python";
-            commands = ''set-option buffer formatcmd "black -" '';
-          }
-          {
-            name = "WinSetOption";
-            group = "format";
-            option = "filetype=sh";
-            commands = ''set-option buffer formatcmd "shfmt -s" '';
-          }
-          {
-            name = "WinSetOption";
-            group = "format";
-            option = "filetype=yaml";
-            commands = ''set-option buffer formatcmd "prettier --parser=yaml" '';
           }
         ];
         numberLines = {
