@@ -127,6 +127,12 @@
             option = "filetype=sh";
             commands = ''set-option buffer formatcmd "shfmt -s" '';
           }
+          {
+            name = "WinSetOption";
+            group = "format";
+            option = "filetype=yaml";
+            commands = ''set-option buffer formatcmd "prettier --parser=yaml" '';
+          }
         ];
         numberLines = {
           enable = true;
