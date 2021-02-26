@@ -118,6 +118,12 @@
           {
             name = "WinSetOption";
             group = "format";
+            option = "filetype=py";
+            commands = ''set-option buffer formatcmd "black" '';
+          }
+          {
+            name = "WinSetOption";
+            group = "format";
             option = "filetype=sh";
             commands = ''set-option buffer formatcmd "shfmt -s" '';
           }
