@@ -177,6 +177,7 @@
         lsp-auto-hover-enable
         set-option global lsp_show_hover_format 'printf %s "''${lsp_diagnostics}"'
         set-option global ui_options ncurses_wheel_scroll_amount=1
+        # kak: set filetype=kak
       '';
     };
     home-manager.enable = true;
