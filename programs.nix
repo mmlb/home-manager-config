@@ -119,7 +119,7 @@
             name = "WinSetOption";
             group = "format";
             option = "filetype=python";
-            commands = ''set-option buffer formatcmd "black" '';
+            commands = ''set-option buffer formatcmd "black -" '';
           }
           {
             name = "WinSetOption";
