@@ -89,12 +89,6 @@
         colorScheme = "gruvbox";
         hooks = [
           {
-            name = "BufWritePost";
-            group = "format";
-            option = ".*\\.go";
-            commands = ''evaluate-commands %sh{ goimports -e -w "$kak_buffile" }; edit!'';
-          }
-          {
             name = "BufOpenFile";
             option = ".*";
             commands = "modeline-parse";
@@ -114,6 +108,12 @@
             name = "KakEnd";
             option = ".*";
             commands = "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
+          }
+          {
+            name = "WinSetOption";
+            group = "format";
+            option = "filetype=go";
+            commands = ''set-option buffer formatcmd "goimports -e"'';
           }
           {
             name = "WinSetOption";
