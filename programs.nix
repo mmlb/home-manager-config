@@ -118,7 +118,7 @@
           {
             name = "WinSetOption";
             group = "format";
-            option = "filetype=py";
+            option = "filetype=python";
             commands = ''set-option buffer formatcmd "black" '';
           }
           {
