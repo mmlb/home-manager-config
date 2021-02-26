@@ -95,15 +95,15 @@
             commands = ''evaluate-commands %sh{ goimports -e -w "$kak_buffile" }; edit!'';
           }
           {
-            name = "BufWritePost";
-            group = "format";
-            option = ".*\\.sh";
-            commands = ''evaluate-commands %sh{ shfmt -s -w "$kak_buffile" }; edit!'';
-          }
-          {
             name = "BufOpenFile";
             option = ".*";
             commands = "modeline-parse";
+          }
+          {
+            name = "BufWritePost";
+            group = "format";
+            option = ".*";
+            commands = "try %{ evaluate-commands format }";
           }
           {
             name = "KakBegin";
@@ -114,6 +114,12 @@
             name = "KakEnd";
             option = ".*";
             commands = "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
+          }
+          {
+            name = "WinSetOption";
+            group = "format";
+            option = "filetype=sh";
+            commands = ''set-option buffer formatcmd "shfmt -s" '';
           }
         ];
         numberLines = {
