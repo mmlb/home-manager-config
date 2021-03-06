@@ -115,7 +115,8 @@
             name = "BufSetOption";
             group = "format";
             option = "filetype=yaml";
-            commands = ''set-option buffer formatcmd "prettier --parser=yaml" '';
+            commands =
+              ''set-option buffer formatcmd "prettier --parser=yaml" '';
           }
           {
             name = "BufWritePost";
@@ -126,12 +127,14 @@
           {
             name = "KakBegin";
             option = ".*";
-            commands = "try %{ source ${config.home.homeDirectory}/.local/share/kak/kak_history }";
+            commands =
+              "try %{ source ${config.home.homeDirectory}/.local/share/kak/kak_history }";
           }
           {
             name = "KakEnd";
             option = ".*";
-            commands = "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
+            commands =
+              "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
           }
         ];
         numberLines = {
