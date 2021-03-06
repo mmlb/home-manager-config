@@ -9,7 +9,7 @@ let
   ];
 
 in {
-  imports = [ ./programs.nix ];
+  imports = [ ./programs.nix ./sway.nix ];
   home.packages = with pkgs; [
     abduco
     alacritty
@@ -104,7 +104,6 @@ in {
     slurp
     socat
     sshpass
-    sway
     sway-contrib.grimshot
     tmate
     tmux
