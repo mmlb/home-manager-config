@@ -155,13 +155,13 @@
 
         source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
+        plug "andreyorst/plug.kak" noload
         plug 'mreppen/kakoune-sway' %{
           # Suggested mapping
           map global user 3 ': enter-user-mode sway<ret>' -docstring 'Sway…'
         }
 
         #plug "robertmeta/plug.kak" noload
-        plug "mmlb/plug.kak" noload
 
         plug "Screwtapello/kakoune-inc-dec" domain "gitlab.com"
         map global normal <c-a> \
