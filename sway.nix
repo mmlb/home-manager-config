@@ -101,7 +101,7 @@ in {
 
         "${mod}+Shift+r" = "reload";
       };
-      menu = "${pkgs.wofi}/bin/bin/wofi --show run | xargs swaymsg exec --";
+      menu = "${pkgs.wofi}/bin/wofi --show run | xargs swaymsg exec --";
       modifier = "Mod4";
       output = {
         DP-2 = {
