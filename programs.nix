@@ -156,6 +156,7 @@
         source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
         plug "andreyorst/plug.kak" noload
+        plug "mmlb/kak-fetch"
         plug 'mreppen/kakoune-sway' %{
           # Suggested mapping
           map global user 3 ': enter-user-mode sway<ret>' -docstring 'Sway…'
