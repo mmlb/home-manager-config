@@ -127,7 +127,7 @@ in {
       terminal = "${pkgs.kitty}/bin/kitty";
       window.commands = [{
         command = "floating toggle, move scratchpad";
-        criteria = { title = "Firefox - Sharing Indicator"; };
+        criteria = { title = "Firefox [-—] Sharing Indicator"; };
       }];
       workspaceAutoBackAndForth = true;
     };
