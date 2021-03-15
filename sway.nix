@@ -104,11 +104,14 @@ in {
       menu = "${pkgs.wofi}/bin/wofi --show run | xargs swaymsg exec --";
       modifier = "Mod4";
       output = {
+        # divide by scale factor to get other monitor position
         DP-2 = {
+          # 3840x2160
           position = "0,0";
           scale = "2";
         };
         eDP-1 = {
+          # 3840x2160
           position = "0,1080";
           scale = "2";
         };
