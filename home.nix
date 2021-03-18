@@ -169,7 +169,7 @@ in {
       fn ls [@a]{ e:ls --color=auto $@a }
       fn nix-shell [@a]{ e:nix-shell --command elvish $@a }
       fn please [@a]{ sudo $@a }
-      fn ssh [@a]{ E:TERM=xterm e:ssh $@a }
+      fn xssh [@a]{ E:TERM=xterm-256color e:ssh $@a }
       fn tar [@a]{ bsdtar $@a }
       fn tf [@a]{ terraform $@a }
       fn tree [@a]{ broot $@a }
