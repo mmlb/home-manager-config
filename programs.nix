@@ -102,6 +102,12 @@
           {
             name = "BufSetOption";
             group = "format";
+            option = "filetype=nix";
+            commands = ''set-option buffer formatcmd "nixfmt"'';
+          }
+          {
+            name = "BufSetOption";
+            group = "format";
             option = "filetype=python";
             commands = ''set-option buffer formatcmd "black -" '';
           }
