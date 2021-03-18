@@ -46,7 +46,7 @@ in {
     gitAndTools.gitstatus
     gitAndTools.hub
     gitg
-    gnome3.simple-scan
+    simple-scan
     gnumake
     gnupg
     go
