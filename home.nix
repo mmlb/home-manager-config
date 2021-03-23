@@ -80,6 +80,7 @@ in {
     nix-update-source
     nixfmt
     nodejs # for nvim Plug 'iamcco/markdown-preview.nvim'
+    nodePackages.prettier
     noisetorch
     pamixer
     pasystray
