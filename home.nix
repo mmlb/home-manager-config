@@ -40,7 +40,6 @@ in {
     git-lfs
     git-revise
     gitAndTools.delta
-    gitAndTools.diff-so-fancy
     gitAndTools.gh
     gitAndTools.git-absorb
     gitAndTools.gitstatus
@@ -87,7 +86,6 @@ in {
     pavucontrol
     pigz
     pipewire
-    perl # needed by diff-so-fancy
     pssh
     pstree
     pulseeffects-pw
