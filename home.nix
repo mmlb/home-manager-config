@@ -199,6 +199,44 @@ in {
 
       edit:rprompt = {  }
     '';
+    ".elvish/lib/direnv.elv".text = ''
+      ## hook for direnv
+      after-chdir = [$@after-chdir [_]{
+        try {
+          m = [(direnv export elvish | from-json)]
+          if (> (count $m) 0) {
+            m = (all $m)
+            keys $m | each [k]{
+              if $m[$k] {
+                set-env $k $m[$k]
+              } else {
+                unset-env $k
+              }
+            }
+          }
+        } except e {
+          echo $e
+        }
+      }]
+
+      @edit:before-readline = $@edit:before-readline {
+        try {
+          m = [(direnv export elvish | from-json)]
+          if (> (count $m) 0) {
+            m = (all $m)
+            keys $m | each [k]{
+              if $m[$k] {
+                set-env $k $m[$k]
+              } else {
+                unset-env $k
+              }
+            }
+          }
+        } except e {
+          echo $e
+        }
+      }
+    '';
   };
   home.sessionVariables = {
     EDITOR = "${pkgs.kakoune}/bin/kak";
