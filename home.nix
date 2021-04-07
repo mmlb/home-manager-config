@@ -30,7 +30,7 @@ in {
     file
     firefox-wayland
     flootty
-    font-manager
+    #font-manager
     freetype
     fzf
     gettext
