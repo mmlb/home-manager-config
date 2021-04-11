@@ -173,7 +173,7 @@ in {
       fn tf [@a]{ terraform $@a }
       fn tree [@a]{ broot $@a }
       fn vim [@a]{ nvim $@a }
-      fn xargs [@a]{ e:xargs -I "{}" -n 1 -P (nproc) $@a }
+      fn xargs [@a]{ e:xargs -I % -n 1 -P (nproc) $@a }
       fn zsh [@a]{ set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a }
       fn k [@a]{ kubectl $@a }
       #fn debugpod[@a] { kubectl run -i --tty --rm debug --image=busybox --restart=Never -- /bin/bash $@a }
