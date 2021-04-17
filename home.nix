@@ -164,6 +164,7 @@ in {
       fn tree [@a]{ broot $@a }
       fn vim [@a]{ nvim $@a }
       fn xargs [@a]{ e:xargs -I % -n 1 -P (nproc) $@a }
+      fn xterm [@a]{ e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a }
       fn zsh [@a]{ set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a }
       fn k [@a]{ kubectl $@a }
       #fn debugpod[@a] { kubectl run -i --tty --rm debug --image=busybox --restart=Never -- /bin/bash $@a }
@@ -264,6 +265,34 @@ in {
     enable = true;
     configFile."nix/nix.conf".text = ''
       cores = 0
+    '';
+    configFile."tmux/tmux.conf".text = ''
+      set -g prefix C-s
+      unbind C-b
+      bind C-s send-prefix
+
+      set -g history-limit 10000
+      set -g default-terminal "tmux-256color"
+      set -sg escape-time 10
+
+      set -g mouse
+
+      set-window-option -g mode-keys vi
+      #bind-key -t vi-copy 'v' begin-selection
+      #bind-key -t vi-copy 'y' copy-selection
+
+      unbind r
+      bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
+
+      unbind l
+      bind m last-window
+
+      bind-key h select-pane -U
+      bind-key j select-pane -L
+      bind-key k select-pane -R
+      bind-key l select-pane -D
+
+      new-session -s default
     '';
   };
 }
