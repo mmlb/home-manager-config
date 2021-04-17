@@ -110,6 +110,7 @@ in {
     xclip
     xdg-user-dirs
     xdg_utils
+    xterm
     zutty
   ];
 
