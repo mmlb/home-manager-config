@@ -295,4 +295,12 @@ in {
       new-session -s default
     '';
   };
+
+  xresources.properties = {
+    "Xft.dpi" = 192;
+    "Zutty.font" = "Iosevka Term Nerd Font Complete";
+    "Zutty.fontpath" = "/run/current-system/sw/share/X11/fonts";
+    "Zutty.fontsize" = 24;
+    "Zutty.shell" = "elvish";
+  };
 }
