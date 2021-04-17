@@ -11,7 +11,6 @@ let
 in {
   imports = [ ./programs.nix ./sway.nix ];
   home.packages = with pkgs; [
-    abduco
     alacritty
     asciinema
     bat
@@ -25,15 +24,12 @@ in {
     entr
     eternal-terminal
     evince
-    fasd
     fd
     file
     firefox-wayland
-    flootty
     #font-manager
     freetype
     fzf
-    gettext
     gimp
     git
     git-crypt
@@ -46,8 +42,6 @@ in {
     gitAndTools.hub
     gitg
     simple-scan
-    gnumake
-    gnupg
     go
     go-2fa
     gotools
@@ -61,11 +55,9 @@ in {
     inetutils
     inkscape
     ipcalc
-    ipfs
     ipmitool
     jo
     jq
-    keybase
     kitty
     libarchive
     libjpeg_turbo
@@ -79,7 +71,6 @@ in {
     neovim
     nix-update-source
     nixfmt
-    nodejs # for nvim Plug 'iamcco/markdown-preview.nvim'
     nodePackages.prettier
     noisetorch
     pamixer
@@ -106,7 +97,6 @@ in {
     sway-contrib.grimshot
     tmate
     tmux
-    transmission-gtk
     tree
     vim
     v4l-utils
@@ -120,7 +110,6 @@ in {
     xclip
     xdg-user-dirs
     xdg_utils
-    yarn # for nvim Plug 'iamcco/markdown-preview.nvim'
     zutty
   ];
 
