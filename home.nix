@@ -153,6 +153,7 @@ in {
       fn cat [@a]{ bat $@a }
       fn commit-nixpkgs { echo "update\n\n"(nix-github-compare|slurp) | git commit -F- . }
       fn cp [@a]{ e:cp --reflink=auto $@a }
+      fn d [@a]{ et dev $@a }
       fn dc [@a]{ docker-compose $@a }
       fn grep [@a]{ e:grep --color=auto $@a }
       fn ls [@a]{ e:ls --color=auto $@a }
