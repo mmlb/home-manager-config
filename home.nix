@@ -82,7 +82,7 @@ in {
     pstree
     pulseeffects-pw
     python3
-    python3Packages.bpython
+    #python3Packages.bpython
     python3Packages.python-language-server
     restic
     ripgrep
