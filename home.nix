@@ -176,9 +176,15 @@ in {
       -override-wcwidth 🦀 2
 
       edit:prompt = {
-        styled "\n[" red;
-        styled (tilde-abbr $pwd) bright-yellow;
-        styled ']' red;
+        styled "\n" red
+
+        styled "[" red
+        styled "--:--:--" bright-yellow
+        styled "]" red
+
+        styled "-[" red
+        styled (tilde-abbr $pwd) bright-yellow
+        styled "]" red
 
         styled "─[" red
         styled (whoami) bright-green
@@ -186,8 +192,23 @@ in {
         styled (hostname) cyan
         styled "]> " red
 
-        put "\n";
+        put "\n"
       }
+
+      use math
+      edit:after-readline = [$@edit:after-readline [cmd]{
+          len = (count $cmd)
+          cols = (tput cols)
+          lines = (+ 1 (exact-num (math:ceil (/ $len $cols))))
+          if (== 1 $lines) { lines = 2 }
+
+          if (not (has-key [clear reset] $cmd)) {
+              tput sc
+              tput cuu $lines
+              printf "%s%s" (styled "[" red) (styled (date +%H:%M:%S) bright-yellow)
+              tput rc
+          }
+      }]
 
       edit:rprompt = {  }
     '';
