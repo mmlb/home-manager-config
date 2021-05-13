@@ -166,6 +166,7 @@
           # Suggested mapping
           map global user 3 ': enter-user-mode sway<ret>' -docstring 'Sway…'
         }
+        plug "notramo/elvish.kak" domain "git.tchncs.de"
 
         plug "Screwtapello/kakoune-inc-dec" domain "gitlab.com"
         map global normal <c-a> \
