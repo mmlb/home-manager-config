@@ -162,12 +162,10 @@
 
         plug "andreyorst/plug.kak" noload
         plug "mmlb/kak-fetch"
-        plug 'mreppen/kakoune-sway' %{
+        plug "mreppen/kakoune-sway" %{
           # Suggested mapping
           map global user 3 ': enter-user-mode sway<ret>' -docstring 'Sway…'
         }
-
-        #plug "robertmeta/plug.kak" noload
 
         plug "Screwtapello/kakoune-inc-dec" domain "gitlab.com"
         map global normal <c-a> \
