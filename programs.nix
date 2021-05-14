@@ -161,6 +161,8 @@
         source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
         plug "andreyorst/plug.kak" noload
+        plug "Bodhizafa/kak-rainbow" # run rainbow-{enable,disable}-window
+
         plug "mmlb/kak-fetch"
         plug "mreppen/kakoune-sway" %{
           # Suggested mapping
