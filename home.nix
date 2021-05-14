@@ -202,7 +202,7 @@ in {
           lines = (+ 1 (exact-num (math:ceil (/ $len $cols))))
           if (== 1 $lines) { lines = 2 }
 
-          if (not (has-key [clear reset] $cmd)) {
+          if (not (has-key [clear exit reset] $cmd)) {
               tput sc
               tput cuu $lines
               printf "%s%s" (styled "[" red) (styled (date +%H:%M:%S) bright-yellow)
