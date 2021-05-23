@@ -194,23 +194,27 @@ in {
 
         put "\n"
       }
-
-      use math
-      edit:after-readline = [$@edit:after-readline [cmd]{
-          len = (count $cmd)
-          cols = (tput cols)
-          lines = (+ 1 (exact-num (math:ceil (/ $len $cols))))
-          if (== 1 $lines) { lines = 2 }
-
-          if (not (has-key [clear exit reset] $cmd)) {
-              tput sc
-              tput cuu $lines
-              printf "%s%s" (styled "[" red) (styled (date +%H:%M:%S) bright-yellow)
-              tput rc
-          }
-      }]
-
       edit:rprompt = {  }
+
+      fn update-prompt-after-readline [cmd]{
+        if (has-key [clear exit reset] $cmd) {
+          return
+        }
+
+        use math
+        len = (count $cmd)
+        cols = (tput cols)
+        lines = (+ 1 (exact-num (math:ceil (/ $len $cols))))
+        if (== 1 $lines) {
+          lines = 2
+        }
+
+        tput sc
+        tput cuu $lines
+        printf "%s%s" (styled "[" red) (styled (date +%H:%M:%S) bright-yellow)
+        tput rc
+      }
+      edit:after-readline = [$@edit:after-readline $update-prompt-after-readline~]
     '';
     ".elvish/lib/direnv.elv".text = ''
       ## hook for direnv
