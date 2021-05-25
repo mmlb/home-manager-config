@@ -364,6 +364,7 @@
           tray = { icon-size = 20; };
         };
       }];
+      systemd.enable = true;
       style = ''
         * {
         	font-size: 20px;
