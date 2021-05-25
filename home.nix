@@ -202,9 +202,13 @@ in {
         }
 
         use math
-        len = (count $cmd)
-        cols = (tput cols)
-        lines = (+ 1 (exact-num (math:ceil (/ $len $cols))))
+        lines = 1
+        put $cmd | to-lines | each [line]{
+          len = (count $line)
+          cols = (tput cols)
+          lines = (+ $lines (exact-num (math:ceil (/ $len $cols))))
+        }
+
         if (== 1 $lines) {
           lines = 2
         }
