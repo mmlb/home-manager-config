@@ -197,7 +197,7 @@ in {
       edit:rprompt = {  }
 
       fn update-prompt-after-readline [cmd]{
-        if (has-key [clear exit reset] $cmd) {
+        if (has-value [clear exit reset] $cmd) {
           return
         }
 
