@@ -73,6 +73,7 @@ in {
 
         "${mod}+Tab" = "workspace back_and_forth";
         "${mod}+q" = "exec ~/bin/focus-last.py --switch";
+        "Print" = "exec ~/bin/grimshot-printscreen";
 
         "XF86AudioLowerVolume" =
           "exec --no-startup-id pactl set-sink-volume 0 -5%";
