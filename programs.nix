@@ -224,6 +224,12 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "root";
         };
+        "waiter" = {
+          hostname = "58ee5b80.packethost.net";
+          identityFile = [ "~/.ssh/packethost_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "root";
+        };
         "github.com gist.github.com" = {
           identityFile = [ "~/.ssh/github_id_ed25519" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
