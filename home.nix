@@ -197,7 +197,13 @@ in {
       edit:rprompt = {  }
 
       fn update-prompt-after-readline [cmd]{
-        if (has-value [clear exit reset] $cmd) {
+        # clear & reset always erase history so no need to update the timestamp
+        if (has-value [clear reset] $cmd) {
+          return
+        }
+        # the earliest elvish has SHLVL=3 so anything greater is run in a subshell that is probably being used interactively
+        # lower leveled shells will most likely close the terminal window and thus no need to update the timestamp
+        if (and (< $E:SHLVL 4) (has-value [exit ""] $cmd)) {
           return
         }
 
