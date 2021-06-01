@@ -156,7 +156,7 @@ in {
       fn d [@a]{ et dev $@a }
       fn dc [@a]{ docker-compose $@a }
       fn grep [@a]{ e:grep --color=auto $@a }
-      fn ls [@a]{ e:ls --color=auto $@a }
+      fn ls [@a]{ e:ls --color=auto -FH --group-directories-first $@a }
       fn nix-shell [@a]{ e:nix-shell --command elvish $@a }
       fn please [@a]{ sudo $@a }
       fn xssh [@a]{ E:TERM=xterm-256color e:ssh $@a }
@@ -219,6 +219,7 @@ in {
         tput rc
       }
       edit:after-readline = [$@edit:after-readline $update-prompt-after-readline~]
+      eval (cat "${config.xdg.configHome}/lscolors/lscolors.elv")
     '';
     ".elvish/lib/direnv.elv".text = ''
       ## hook for direnv
