@@ -59,7 +59,7 @@
         };
         pull.rebase = true;
         push = {
-          default = "current";
+          default = "upstream";
           followTags = true;
         };
         rebase = {
