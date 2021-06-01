@@ -240,6 +240,11 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "git";
         };
+        "git.sr.ht" = {
+          identityFile = [ "~/.ssh/id_srht" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "git";
+        };
         "nix350 nix350.lan nix710 nix710.lan" = {
           identityFile = [ "~/.ssh/id_ed25519" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
