@@ -41,6 +41,7 @@
         };
         difftool.prompt = "no";
         help.autoCorrect = 1;
+        init.defaultBranch = "main";
         interactive.diffFilter = "delta --diff-so-fancy --color-only";
         log.date = "auto:human";
         merge = {
