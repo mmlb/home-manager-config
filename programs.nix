@@ -57,6 +57,7 @@
           diff = "delta --diff-so-fancy";
           show = "delta --diff-so-fancy";
         };
+        pull.rebase = true;
         push = {
           default = "current";
           followTags = true;
