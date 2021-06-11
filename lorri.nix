@@ -2,7 +2,7 @@
 (import (pkgs.fetchFromGitHub {
   owner = "target";
   repo = "lorri";
-  #branch@date: master@2020-11-13
-  rev = "66536ab4a503e2c30f948849e9b655ad5c0f0708";
-  sha256 = "08jb2vgbm4s87wnk7q82yc55dd2b8fyn7v8vsarjamwhna2fh7py";
+  #branch@date: master@2021-06-11
+  rev = "f3ac576d660ceb587d7692a993088cf78e881fc0";
+  sha256 = "0h2xczfhg8ymr5k078vmvr9lijmviaab7bg18hv3i8hc9hdkdbnk";
 }))
