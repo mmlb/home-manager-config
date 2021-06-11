@@ -1,8 +1,8 @@
 { pkgs, ... }:
 (import (pkgs.fetchFromGitHub {
-  owner = "target";
+  owner = "nix-community";
   repo = "lorri";
-  #branch@date: master@2021-06-11
-  rev = "f3ac576d660ceb587d7692a993088cf78e881fc0";
-  sha256 = "0h2xczfhg8ymr5k078vmvr9lijmviaab7bg18hv3i8hc9hdkdbnk";
+  #branch@date: master@2021-05-26
+  rev = "dd45c1f0ebea90102a0fe9b5fcc701302e71f1f6";
+  sha256 = "0hqml8ml76k1s8v6a0rzcf9sns87b2xnqplxm45cgp2rjs4qi2iz";
 }))
