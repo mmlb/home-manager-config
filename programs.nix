@@ -102,6 +102,11 @@
           }
           {
             name = "BufSetOption";
+            option = "filetype=make";
+            commands = "set-option buffer filetype makefile";
+          }
+          {
+            name = "BufSetOption";
             group = "format";
             option = "filetype=nix";
             commands = ''set-option buffer formatcmd "nixfmt"'';
