@@ -120,7 +120,8 @@ in {
       startup = [
         {
           command = ''
-            swayidle timeout 1200 'swaylock -c 000000' timeout 1500 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swayloc -c 000000' '';
+            swayidle timeout 1200 'swaylock -c 000000' timeout 1500 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -c 000000'
+          '';
         }
         { command = "systemctl --user import-environment"; }
       ];
