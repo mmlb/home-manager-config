@@ -72,6 +72,7 @@ in {
     nix-update-source
     nixfmt
     nodePackages.prettier
+    nodePackages.bash-language-server
     noisetorch
     pamixer
     pasystray
