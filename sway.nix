@@ -36,7 +36,7 @@ in {
           text = "#f3f4f5";
         };
       };
-      fonts = [ "Iosevka 12" ];
+      fonts = { names = [ "Iosevka 12" ]; };
       input = {
         "DELL08AF:00 06CB:76AF Touchpad" = {
           tap = "enabled";
