@@ -157,6 +157,7 @@ in {
       fn d [@a]{ et dev $@a }
       fn dc [@a]{ docker-compose $@a }
       fn grep [@a]{ e:grep --color=auto $@a }
+      fn init-direnv []{ echo "has nix && use nix\ndotenv_if_exists" >> .envrc; touch shell.nix; direnv allow . }
       fn ls [@a]{ e:ls --color=auto -FH --group-directories-first $@a }
       fn nix-shell [@a]{ e:nix-shell --command elvish $@a }
       fn please [@a]{ sudo $@a }
