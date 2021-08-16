@@ -160,12 +160,12 @@ in {
       fn ls [@a]{ e:ls --color=auto -FH --group-directories-first $@a }
       fn nix-shell [@a]{ e:nix-shell --command elvish $@a }
       fn please [@a]{ sudo $@a }
-      fn xssh [@a]{ E:TERM=xterm-256color e:ssh $@a }
       fn tar [@a]{ bsdtar $@a }
       fn tf [@a]{ terraform $@a }
       fn tree [@a]{ broot $@a }
       fn vim [@a]{ nvim $@a }
       fn xargs [@a]{ e:xargs -I % -n 1 -P (nproc) $@a }
+      fn xssh [@a]{ E:TERM=xterm-256color e:ssh $@a }
       fn xterm [@a]{ e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a }
       fn zsh [@a]{ set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a }
 
