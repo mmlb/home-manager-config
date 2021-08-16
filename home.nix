@@ -168,11 +168,6 @@ in {
       fn xargs [@a]{ e:xargs -I % -n 1 -P (nproc) $@a }
       fn xterm [@a]{ e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a }
       fn zsh [@a]{ set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a }
-      fn k [@a]{ kubectl $@a }
-      #fn debugpod[@a] { kubectl run -i --tty --rm debug --image=busybox --restart=Never -- /bin/bash $@a }
-      fn kgetall { kubectl get (kubectl api-resources --verbs=list -o name | paste -sd, -) --ignore-not-found --show-kind -o wide '$NS' }
-      #fn decode_kubernetes_secret[@a] { kubectl get secret $@a -o json | jq '.data | map_values(@base64d)' }
-      fn ds { decode_kubernetes_secret }
 
       -override-wcwidth 🦀 2
 
