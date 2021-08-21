@@ -19,6 +19,7 @@ in {
     blueman
     colordiff
     direnv
+    dnsutils
     duperemove
     elvish
     entr
