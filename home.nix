@@ -15,8 +15,8 @@ in {
     asciinema
     bat
     bitwarden-cli
-    broot
     blueman
+    broot
     colordiff
     direnv
     dnsutils
@@ -33,16 +33,15 @@ in {
     fzf
     gimp
     git
-    git-crypt
-    git-lfs
-    git-revise
     gitAndTools.delta
     gitAndTools.gh
     gitAndTools.git-absorb
     gitAndTools.gitstatus
     gitAndTools.hub
+    git-crypt
     gitg
-    simple-scan
+    git-lfs
+    git-revise
     go
     go-2fa
     gotools
@@ -70,10 +69,10 @@ in {
     mpv
     mtr
     neovim
-    nix-update-source
     nixfmt
-    nodePackages.prettier
+    nix-update-source
     nodePackages.bash-language-server
+    nodePackages.prettier
     noisetorch
     pamixer
     pasystray
@@ -93,6 +92,7 @@ in {
     shellcheck
     shfmt
     signal-desktop
+    simple-scan
     slurp
     socat
     sshpass
@@ -100,11 +100,11 @@ in {
     tmate
     tmux
     tree
-    vim
     v4l-utils
+    vim
     vlc
-    wf-recorder
     waybar
+    wf-recorder
     wget
     wireshark-qt
     wl-clipboard
