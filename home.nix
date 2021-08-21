@@ -73,6 +73,7 @@ in {
     nix-update-source
     nodePackages.bash-language-server
     nodePackages.prettier
+    nodePackages.pyright
     noisetorch
     pamixer
     pasystray
@@ -84,7 +85,6 @@ in {
     pulseeffects-pw
     python3
     python3Packages.bpython
-    #python3Packages.python-language-server
     restic
     ripgrep
     rofi
