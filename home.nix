@@ -10,6 +10,9 @@ let
 
 in {
   imports = [ ./programs.nix ./sway.nix ];
+  home.activation.report-changes = config.lib.dag.entryAnywhere ''
+    ${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
+  '';
   home.packages = with pkgs; [
     alacritty
     asciinema
