@@ -66,6 +66,7 @@
           autoSquash = true;
           stat = true;
         };
+        rerere.enabled = true;
         submodule.fetchJobs = 8;
         url."ssh://github.com/".insteadOf = "https://github.com/";
         user.useConfigOnly = true;
