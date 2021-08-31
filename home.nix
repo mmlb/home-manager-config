@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let
   lorri = (import ./lorri.nix { inherit pkgs; }) { };
-  zutty = (import ./zutty.nix) { inherit pkgs; };
   prependPaths = [
     "${config.home.homeDirectory}/bin"
     "${config.home.homeDirectory}/go/bin"
@@ -116,7 +115,6 @@ in {
     xdg-user-dirs
     xdg_utils
     xterm
-    zutty
   ];
 
   home.file = {
