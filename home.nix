@@ -77,6 +77,7 @@ in {
     nodePackages.prettier
     nodePackages.pyright
     noisetorch
+    nvd
     pamixer
     pasystray
     pavucontrol
