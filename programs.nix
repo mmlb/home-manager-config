@@ -263,17 +263,18 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "root";
         };
+        "adev" = {
+          hostname = "360b1172.packethost.net";
+          identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          sendEnv = [ "TERM=xterm-256color" ];
+          user = "manny";
+        };
         "dev" = {
           hostname = "dec786eb.packethost.net";
           identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "manny";
-        };
-        "rdev" = {
-          hostname = "dec786eb.packethost.net";
-          identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
-          user = "root";
         };
       };
     };
