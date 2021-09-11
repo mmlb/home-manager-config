@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  lorri = (import ./lorri.nix { inherit pkgs; }) { };
   prependPaths = [
     "${config.home.homeDirectory}/bin"
     "${config.home.homeDirectory}/go/bin"
@@ -301,10 +300,7 @@ in {
   nixpkgs.config = { andrdoid_sdk.accept_license = true; };
 
   services = {
-    lorri = {
-      enable = true;
-      package = lorri;
-    };
+    lorri.enable = true;
     pasystray.enable = true;
     redshift = {
       enable = true;
