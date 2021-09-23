@@ -88,7 +88,7 @@
     kakoune = {
       enable = true;
       config = {
-        colorScheme = "gruvbox";
+        colorScheme = "gruvbox-dark";
         hooks = [
           {
             name = "BufOpenFile";
