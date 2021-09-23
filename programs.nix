@@ -231,6 +231,12 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "root";
         };
+        "porter" = {
+          hostname = "57941012.packethost.net";
+          identityFile = [ "~/.ssh/packethost_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "root";
+        };
         "waiter" = {
           hostname = "58ee5b80.packethost.net";
           identityFile = [ "~/.ssh/packethost_ed25519" ];
