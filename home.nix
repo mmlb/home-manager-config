@@ -70,6 +70,7 @@ in {
       blueman
       broot
       colordiff
+      delta
       direnv
       dnsutils
       duperemove
@@ -83,17 +84,15 @@ in {
       #font-manager
       freetype
       fzf
+      gh
       gimp
       git
-      gitAndTools.delta
-      gitAndTools.gh
-      gitAndTools.git-absorb
-      gitAndTools.gitstatus
-      gitAndTools.hub
+      git-absorb
       git-crypt
       gitg
       git-lfs
       git-revise
+      gitstatus
       go-2fa
       gron
       gtk3
