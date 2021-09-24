@@ -88,6 +88,7 @@ in {
       gimp
       git
       git-absorb
+      git-appraise
       git-crypt
       gitg
       git-lfs
