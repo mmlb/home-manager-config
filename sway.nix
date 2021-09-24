@@ -116,6 +116,10 @@ in {
           position = "0,0";
           scale = "2";
         };
+        HDMI-A-1 = { scale = "2"; };
+        HDMI-A-2 = { scale = "2"; };
+        HDMI-A-3 = { scale = "2"; };
+        HDMI-A-4 = { scale = "2"; };
       };
       startup = [
         {

@@ -33,7 +33,7 @@ let
   goPackages = with pkgs; [
     asmfmt
     delve
-    errcheck
+    #errcheck
     gdlv
     gnused
     go
@@ -45,7 +45,7 @@ let
     gofumpt
     gogetdoc
     golangci-lint
-    golint
+    #golint
     gomodifytags
     gopls
     gotags
@@ -61,6 +61,20 @@ in {
   home.activation.report-changes = config.lib.dag.entryAnywhere ''
     ${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
   '';
+  nixpkgs.overlays = [
+    (self: super: {
+      kitty = super.kitty.overrideAttrs (old: rec {
+        name = old.pname + version;
+        version = "-unstable-2022-02-21g${builtins.substring 0 9 src.rev}";
+        src = super.fetchFromGitHub {
+          owner = "kovidgoyal";
+          repo = "kitty";
+          rev = "2d2f4b9ba92cfb55a5b9cdc3bf8fc3f1ff40e820";
+          sha256 = "1ll5fni6hajvf3sw23nfk0ch3ndvwlkzir23f8dxxarbqqlzr1pi";
+        };
+      });
+    })
+  ];
   home.packages = with pkgs;
     [
       alacritty
@@ -88,6 +102,7 @@ in {
       gimp
       git
       git-absorb
+      git-appraise
       git-crypt
       gitg
       git-lfs
@@ -135,8 +150,10 @@ in {
       pulseeffects-pw
       python3
       python3Packages.bpython
+      python3Packages.python-lsp-server
       restic
       ripgrep
+      rnix-lsp
       rofi
       rsync
       shellcheck
@@ -172,8 +189,8 @@ in {
       [install]
       root = "${config.home.homeDirectory}/.local"
     '';
-    ".elvish/rc.elv".text = ''
-      config-files = [ ~/.ssh/config ~/.ssh/packet-ssh-config /etc/ssh/ssh_config /etc/ssh_config ]
+    ".config/elvish/rc.elv".text = ''
+      var config-files = [ ~/.ssh/config ~/.ssh/packet-ssh-config /etc/ssh/ssh_config /etc/ssh_config ]
 
       use direnv
       #use github.com/zzamboni/elvish-completions/git
@@ -183,9 +200,7 @@ in {
 
       smart-matcher:apply
 
-      #use github.com/zzamboni/elvish-themes/chain
-
-      long-running-notifications:never-notify = [
+      set long-running-notifications:never-notify = [
         bat
         emacs
         kak
@@ -196,33 +211,31 @@ in {
         vi
         vim
       ]
-      #long-running-notifications:notifier = [cmd duration start]{
-      #  notify-send -t 5000 "Command Finished\nDuration "$duration"\nCommand  "$cmd
-      #}
-      long-running-notifications:threshold = 20
+      set long-running-notifications:threshold = 20
 
-      fn cat [@a]{ bat $@a }
+      fn a {|@a| et adev $@a}
+      fn cat {|@a| bat $@a}
       fn commit-nixpkgs { echo "update\n\n"(nix-github-compare|slurp) | git commit -F- . }
-      fn cp [@a]{ e:cp --reflink=auto $@a }
-      fn d [@a]{ et dev $@a }
-      fn dc [@a]{ docker-compose $@a }
-      fn grep [@a]{ e:grep --color=auto $@a }
-      fn init-direnv []{ echo "has nix && use nix\ndotenv_if_exists" >> .envrc; touch shell.nix; direnv allow . }
-      fn ls [@a]{ e:ls --color=auto -FH --group-directories-first $@a }
-      fn nix-shell [@a]{ e:nix-shell --command elvish $@a }
-      fn please [@a]{ sudo $@a }
-      fn tar [@a]{ bsdtar $@a }
-      fn tf [@a]{ terraform $@a }
-      fn tree [@a]{ broot $@a }
-      fn vim [@a]{ nvim $@a }
-      fn xargs [@a]{ e:xargs -I % -n 1 -P (nproc) $@a }
-      fn xssh [@a]{ E:TERM=xterm-256color e:ssh $@a }
-      fn xterm [@a]{ e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a }
-      fn zsh [@a]{ set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a }
+      fn cp {|@a| e:cp --reflink=auto $@a}
+      fn d {|@a| et dev $@a}
+      fn dc {|@a| docker-compose $@a}
+      fn grep {|@a| e:grep --color=auto $@a}
+      fn init-direnv {|| echo "has nix && use nix\ndotenv_if_exists" >> .envrc; touch shell.nix; direnv allow . }
+      fn ls {|@a| e:ls --color=auto -FH --group-directories-first $@a}
+      fn nix-shell {|@a| e:nix-shell --command elvish $@a}
+      fn please {|@a| sudo $@a}
+      fn tar {|@a| bsdtar $@a}
+      fn tf {|@a| terraform $@a}
+      fn tree {|@a| broot $@a}
+      fn vim {|@a| nvim $@a}
+      fn xargs {|@a| e:xargs -I % -n 1 -P (nproc) $@a}
+      fn xssh {|@a| tmp E:TERM = xterm-256color; e:ssh $@a}
+      fn xterm {|@a| e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a}
+      fn zsh {|@a| set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a}
 
       -override-wcwidth 🦀 2
 
-      edit:prompt = {
+      set edit:prompt = {
         styled "\n" red
 
         styled "[" red
@@ -241,9 +254,9 @@ in {
 
         put "\n"
       }
-      edit:rprompt = {  }
+      set edit:rprompt = {  }
 
-      fn update-prompt-after-readline [cmd]{
+      fn update-prompt-after-readline {|cmd|
         # clear & reset always erase history so no need to update the timestamp
         if (has-value [clear reset] $cmd) {
           return
@@ -255,15 +268,15 @@ in {
         }
 
         use math
-        lines = 1
-        put $cmd | to-lines | each [line]{
-          len = (count $line)
-          cols = (tput cols)
-          lines = (+ $lines (exact-num (math:ceil (/ $len $cols))))
+        var lines = 1
+        put $cmd | to-lines | each {|line|
+          var len = (count $line)
+          var cols = (tput cols)
+          set lines = (+ $lines (exact-num (math:ceil (/ $len $cols))))
         }
 
         if (== 1 $lines) {
-          lines = 2
+          set lines = 2
         }
 
         tput sc
@@ -271,37 +284,42 @@ in {
         printf "%s%s" (styled "[" red) (styled (date +%H:%M:%S) bright-yellow)
         tput rc
       }
-      edit:after-readline = [$@edit:after-readline $update-prompt-after-readline~]
+      set edit:after-readline = [$@edit:after-readline $update-prompt-after-readline~]
 
-      # Filter the command history through the fzf program. This is normally bound
-      # to Ctrl-R.
-      fn history []{
+      # Filter the command history through the fzf program. This is normally bound to Ctrl-R.
+      fn history {||
         var new-cmd = (
-          edit:command-history &dedup &newest-first &cmd-only |
-          to-terminated "\x00" |
-          try {
-            fzf --no-sort --read0 --layout=reverse --info=hidden --exact ^
-              --query=$edit:current-command
-          } except {
-            # If the user presses [Escape] to cancel the fzf operation it will exit
-            # with a non-zero status. Ignore that we ran this function in that case.
+          edit:command-history &dedup &newest-first &cmd-only | to-terminated "\x00" | try {
+            ${pkgs.fzf}/bin/fzf ^
+              --exact ^
+              --info=hidden ^
+              --layout=reverse ^
+              --no-multi ^
+              --no-sort ^
+              --read0 ^
+              --query=$edit:current-command | slurp
+          } catch {
+            # If the user presses [Escape] to cancel the fzf operation it will exit with a non-zero status.
+            # Ignore that we ran this function in that case.
+            edit:redraw &full=$true
             return
           }
         )
-        edit:current-command = $new-cmd
+        edit:redraw &full=$true
+        set edit:current-command = $new-cmd
       }
-      edit:insert:binding[Ctrl-R] = []{ history >/dev/tty 2>&1 }
+      set edit:insert:binding[Ctrl-R] = {|| history >/dev/tty 2>&1 }
 
       eval (cat "${config.xdg.configHome}/lscolors/lscolors.elv")
     '';
-    ".elvish/lib/direnv.elv".text = ''
+    ".local/share/elvish/lib/direnv.elv".text = ''
       ## hook for direnv
-      after-chdir = [$@after-chdir [_]{
+      set after-chdir = [$@after-chdir {|_|
         try {
-          m = [(direnv export elvish | from-json)]
+          var m = [(direnv export elvish | from-json)]
           if (> (count $m) 0) {
-            m = (all $m)
-            keys $m | each [k]{
+            set m = (all $m)
+            keys $m | each {|k|
               if $m[$k] {
                 set-env $k $m[$k]
               } else {
@@ -309,17 +327,17 @@ in {
               }
             }
           }
-        } except e {
+        } catch e {
           echo $e
         }
       }]
 
-      @edit:before-readline = $@edit:before-readline {
+      set @edit:before-readline = $@edit:before-readline {
         try {
-          m = [(direnv export elvish | from-json)]
+          var m = [(direnv export elvish | from-json)]
           if (> (count $m) 0) {
-            m = (all $m)
-            keys $m | each [k]{
+            set m = (all $m)
+            keys $m | each {|k|
               if $m[$k] {
                 set-env $k $m[$k]
               } else {
@@ -327,7 +345,7 @@ in {
               }
             }
           }
-        } except e {
+        } catch e {
           echo $e
         }
       }
@@ -337,7 +355,6 @@ in {
     EDITOR = "${pkgs.kakoune}/bin/kak";
     KEYTIMEOUT = "1";
     LESS = "AFRSX";
-    MANPAGER = "nvim -c 'set ft=man' -";
     VISUAL = "${config.home.sessionVariables.EDITOR}";
     XDG_CURRENT_DESKTOP = "sway";
     XDG_SESSION_TYPE = "wayland";
@@ -352,15 +369,17 @@ in {
     pasystray.enable = true;
     redshift = {
       enable = true;
-      package = pkgs.redshift-wlr;
-      latitude = "25.563944250922";
-      longitude = "-80.391474366188";
+      package = pkgs.gammastep;
+      latitude = "29.621690";
+      longitude = "-82.422049";
       temperature = {
         day = 5700;
         night = 3500;
       };
     };
   };
+  systemd.user.tmpfiles.rules =
+    [ "D ${config.xdg.cacheHome}/ssh/control-master/ - - - - -" ];
 
   xdg = {
     enable = true;
@@ -374,7 +393,7 @@ in {
 
       set -g history-limit 10000
       set -g default-terminal "tmux-256color"
-      set -sg escape-time 10
+      set -sg escape-time 0
 
       set -g mouse
 
@@ -394,6 +413,23 @@ in {
       bind-key l select-pane -D
 
       new-session -s default
+
+      #set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.local/lib/tmux/plugins'
+      #
+      #set -g @plugin 'tmux-plugins/tmux-resurrect'
+      #set -g @plugin 'tmux-plugins/tmux-continuum'
+      #
+      #set -g @continuum-restore 'on'
+      #
+      #run '~/.local/lib/tmux/plugins/tpm/tpm'
+      #
+      # Notes
+      # Q: How to view different window on a different client/terminal?
+      #    If you open a new terminal and try :next, both clients will see the window switch.
+      #    This is because the windows being shown is per-session not per client.
+      # A: Create a new session that is attached to the same windows as the other
+      #    $ tmux new-session -t 'original session name or number'
+      #    Now when done you can kill the new session but the windows stay around as long as a session is connected (the original)
     '';
   };
 

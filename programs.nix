@@ -45,6 +45,7 @@
         interactive.diffFilter = "delta --diff-so-fancy --color-only";
         log.date = "auto:human";
         merge = {
+          autoStash = true;
           log = true;
           tool = "meld";
           renameLimit = 2048;
@@ -64,14 +65,20 @@
         };
         rebase = {
           autoSquash = true;
+          autoStash = true;
           stat = true;
         };
         rerere.enabled = true;
         submodule.fetchJobs = 8;
+        submodule.recurse = true;
         url."ssh://github.com/".insteadOf = "https://github.com/";
         user.useConfigOnly = true;
       };
       includes = [
+        {
+          contents.user.email = "mmendez@equinix.com";
+          condition = "gitdir:github.com/equinixmetal/";
+        }
         {
           contents.user.email = "mmendez@equinix.com";
           condition = "gitdir:github.com/packethost/";
@@ -110,7 +117,14 @@
             name = "BufSetOption";
             group = "format";
             option = "filetype=nix";
-            commands = ''set-option buffer formatcmd "nixfmt"'';
+            commands = ''
+              %sh{
+                formatcmd=$(which alejandra &>/dev/null && echo alejandra)
+                formatcmd=''${formatcmd:-nixfmt}
+                echo "set-option buffer formatcmd '$formatcmd'" >$kak_command_fifo
+                echo "lsp-auto-hover-disable" >$kak_command_fifo
+              }
+            '';
           }
           {
             name = "BufSetOption";
@@ -136,6 +150,24 @@
             group = "format";
             option = ".*";
             commands = "try %{ evaluate-commands format }";
+          }
+          {
+            name = "WinSetOption";
+            option = "filetype=zig";
+            commands = ''
+              # configure zls: we enable zig fmt, reference and semantic highlighting
+              set-option buffer formatcmd 'zig fmt --stdin'
+              set-option window lsp_auto_highlight_references true
+              #set-option global lsp_server_configuration zls.zig_lib_path="/usr/lib/zig"
+              set-option -add global lsp_server_configuration zls.warn_style=true
+              set-option -add global lsp_server_configuration zls.enable_semantic_tokens=true
+              hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+              hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+              hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+              hook -once -always window WinSetOption filetype=.* %{
+                  remove-hooks window semantic-tokens
+              }
+            '';
           }
           {
             name = "KakBegin";
@@ -204,7 +236,7 @@
       enable = true;
       compression = true;
       controlMaster = "auto";
-      controlPath = "~/.ssh/control-master/%C.sock";
+      controlPath = "${config.xdg.cacheHome}/ssh/control-master/%C.sock";
       controlPersist = "15m";
       extraConfig = ''
         KexAlgorithms = diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
@@ -219,7 +251,7 @@
           extraOptions = { };
         };
         "*.packet.net *.packet.rocks *.packethost.net" = {
-          sendEnv = [ "TERM=xterm" ];
+          extraOptions = { "SetEnv" = "TERM=xterm-256color"; };
         };
         "*.lan *.local" = {
           identityFile = [ "~/.ssh/id_ed25519" ];
@@ -248,6 +280,11 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "git";
         };
+        "gitlab.com" = {
+          identityFile = [ "~/.ssh/gitlab" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "git";
+        };
         "gitlab.alpinelinux.org" = {
           identityFile = [ "~/.ssh/gitlab.alpinelinux.org" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
@@ -259,6 +296,19 @@
           user = "git";
         };
         "nix350 nix350.lan nix710 nix710.lan" = {
+          hostname = "192.168.2.125";
+          identityFile = [ "~/.ssh/id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "manny";
+        };
+        "dellnix dellnix.lan" = {
+          hostname = "192.168.2.70";
+          identityFile = [ "~/.ssh/id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "manny";
+        };
+        "zennix zennix.lan" = {
+          hostname = "192.168.2.127";
           identityFile = [ "~/.ssh/id_ed25519" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "manny";
@@ -270,10 +320,12 @@
           user = "root";
         };
         "adev" = {
-          hostname = "360b1172.packethost.net";
+          hostname = "f9d67017.packethost.net";
           identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
-          sendEnv = [ "TERM=xterm-256color" ];
+          extraOptions = {
+            "PubKeyAuthentication" = "yes";
+            "SetEnv" = "TERM=xterm-256color";
+          };
           user = "manny";
         };
         "dev" = {
