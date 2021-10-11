@@ -202,6 +202,7 @@ in {
       #}
       long-running-notifications:threshold = 20
 
+      fn a [@a]{ et adev $@a }
       fn cat [@a]{ bat $@a }
       fn commit-nixpkgs { echo "update\n\n"(nix-github-compare|slurp) | git commit -F- . }
       fn cp [@a]{ e:cp --reflink=auto $@a }
