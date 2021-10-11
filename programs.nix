@@ -219,7 +219,7 @@
           extraOptions = { };
         };
         "*.packet.net *.packet.rocks *.packethost.net" = {
-          sendEnv = [ "TERM=xterm" ];
+          extraOptions = { "SetEnv" = "TERM=xterm-256color"; };
         };
         "*.lan *.local" = {
           identityFile = [ "~/.ssh/id_ed25519" ];
@@ -272,8 +272,10 @@
         "adev" = {
           hostname = "360b1172.packethost.net";
           identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
-          sendEnv = [ "TERM=xterm-256color" ];
+          extraOptions = {
+            "PubKeyAuthentication" = "yes";
+            "SetEnv" = "TERM=xterm-256color";
+          };
           user = "manny";
         };
         "dev" = {
