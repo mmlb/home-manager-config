@@ -274,6 +274,12 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "manny";
         };
+        "zennix zennix.lan" = {
+          hostname = "192.168.2.122";
+          identityFile = [ "~/.ssh/id_ed25519" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "manny";
+        };
         "router.lan router" = {
           hostname = "192.168.1.1";
           identityFile = [ "~/.ssh/id_ed25519" ];
