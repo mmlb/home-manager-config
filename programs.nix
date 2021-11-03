@@ -204,7 +204,7 @@
       enable = true;
       compression = true;
       controlMaster = "auto";
-      controlPath = "~/.ssh/control-master/%C.sock";
+      controlPath = "${config.xdg.cacheHome}/ssh/control-master/%C.sock";
       controlPersist = "15m";
       extraConfig = ''
         KexAlgorithms = diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1

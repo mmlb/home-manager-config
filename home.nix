@@ -363,6 +363,8 @@ in {
       };
     };
   };
+  systemd.user.tmpfiles.rules =
+    [ "D ${config.xdg.cacheHome}/ssh/control-master/ - - - - -" ];
 
   xdg = {
     enable = true;
