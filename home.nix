@@ -173,7 +173,7 @@ in {
       [install]
       root = "${config.home.homeDirectory}/.local"
     '';
-    ".elvish/rc.elv".text = ''
+    ".config/elvish/rc.elv".text = ''
       config-files = [ ~/.ssh/config ~/.ssh/packet-ssh-config /etc/ssh/ssh_config /etc/ssh_config ]
 
       use direnv
@@ -296,7 +296,7 @@ in {
 
       eval (cat "${config.xdg.configHome}/lscolors/lscolors.elv")
     '';
-    ".elvish/lib/direnv.elv".text = ''
+    ".local/share/elvish/lib/direnv.elv".text = ''
       ## hook for direnv
       after-chdir = [$@after-chdir [_]{
         try {
