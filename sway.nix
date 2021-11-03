@@ -116,6 +116,7 @@ in {
           position = "0,0";
           scale = "2";
         };
+        HDMI-A-1 = { scale = "2"; };
       };
       startup = [
         {
