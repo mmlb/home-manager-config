@@ -248,6 +248,11 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "git";
         };
+        "gitlab.com" = {
+          identityFile = [ "~/.ssh/gitlab" ];
+          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          user = "git";
+        };
         "gitlab.alpinelinux.org" = {
           identityFile = [ "~/.ssh/gitlab.alpinelinux.org" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
