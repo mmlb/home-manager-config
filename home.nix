@@ -355,8 +355,8 @@ in {
     redshift = {
       enable = true;
       package = pkgs.redshift-wlr;
-      latitude = "25.563944250922";
-      longitude = "-80.391474366188";
+      latitude = "29.621690";
+      longitude = "-82.422049";
       temperature = {
         day = 5700;
         night = 3500;
