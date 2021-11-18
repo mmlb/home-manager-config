@@ -339,7 +339,6 @@ in {
     EDITOR = "${pkgs.kakoune}/bin/kak";
     KEYTIMEOUT = "1";
     LESS = "AFRSX";
-    MANPAGER = "nvim -c 'set ft=man' -";
     VISUAL = "${config.home.sessionVariables.EDITOR}";
     XDG_CURRENT_DESKTOP = "sway";
     XDG_SESSION_TYPE = "wayland";
