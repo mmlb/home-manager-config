@@ -275,7 +275,7 @@
           user = "manny";
         };
         "zennix zennix.lan" = {
-          hostname = "192.168.2.122";
+          hostname = "192.168.2.127";
           identityFile = [ "~/.ssh/id_ed25519" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "manny";
