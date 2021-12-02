@@ -264,6 +264,7 @@
           user = "git";
         };
         "nix350 nix350.lan nix710 nix710.lan" = {
+          hostname = "192.168.2.125";
           identityFile = [ "~/.ssh/id_ed25519" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "manny";
