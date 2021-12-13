@@ -377,7 +377,7 @@ in {
 
       set -g history-limit 10000
       set -g default-terminal "tmux-256color"
-      set -sg escape-time 10
+      set -sg escape-time 0
 
       set -g mouse
 
@@ -397,6 +397,23 @@ in {
       bind-key l select-pane -D
 
       new-session -s default
+
+      #set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.local/lib/tmux/plugins'
+      #
+      #set -g @plugin 'tmux-plugins/tmux-resurrect'
+      #set -g @plugin 'tmux-plugins/tmux-continuum'
+      #
+      #set -g @continuum-restore 'on'
+      #
+      #run '~/.local/lib/tmux/plugins/tpm/tpm'
+      #
+      # Notes
+      # Q: How to view different window on a different client/terminal?
+      #    If you open a new terminal and try :next, both clients will see the window switch.
+      #    This is because the windows being shown is per-session not per client.
+      # A: Create a new session that is attached to the same windows as the other
+      #    $ tmux new-session -t 'original session name or number'
+      #    Now when done you can kill the new session but the windows stay around as long as a session is connected (the original)
     '';
   };
 
