@@ -174,7 +174,7 @@ in {
       root = "${config.home.homeDirectory}/.local"
     '';
     ".config/elvish/rc.elv".text = ''
-      config-files = [ ~/.ssh/config ~/.ssh/packet-ssh-config /etc/ssh/ssh_config /etc/ssh_config ]
+      var config-files = [ ~/.ssh/config ~/.ssh/packet-ssh-config /etc/ssh/ssh_config /etc/ssh_config ]
 
       use direnv
       #use github.com/zzamboni/elvish-completions/git
@@ -184,9 +184,7 @@ in {
 
       smart-matcher:apply
 
-      #use github.com/zzamboni/elvish-themes/chain
-
-      long-running-notifications:never-notify = [
+      set long-running-notifications:never-notify = [
         bat
         emacs
         kak
@@ -197,34 +195,31 @@ in {
         vi
         vim
       ]
-      #long-running-notifications:notifier = [cmd duration start]{
-      #  notify-send -t 5000 "Command Finished\nDuration "$duration"\nCommand  "$cmd
-      #}
-      long-running-notifications:threshold = 20
+      set long-running-notifications:threshold = 20
 
-      fn a [@a]{ et adev $@a }
-      fn cat [@a]{ bat $@a }
+      fn a {|@a| et adev $@a}
+      fn cat {|@a| bat $@a}
       fn commit-nixpkgs { echo "update\n\n"(nix-github-compare|slurp) | git commit -F- . }
-      fn cp [@a]{ e:cp --reflink=auto $@a }
-      fn d [@a]{ et dev $@a }
-      fn dc [@a]{ docker-compose $@a }
-      fn grep [@a]{ e:grep --color=auto $@a }
-      fn init-direnv []{ echo "has nix && use nix\ndotenv_if_exists" >> .envrc; touch shell.nix; direnv allow . }
-      fn ls [@a]{ e:ls --color=auto -FH --group-directories-first $@a }
-      fn nix-shell [@a]{ e:nix-shell --command elvish $@a }
-      fn please [@a]{ sudo $@a }
-      fn tar [@a]{ bsdtar $@a }
-      fn tf [@a]{ terraform $@a }
-      fn tree [@a]{ broot $@a }
-      fn vim [@a]{ nvim $@a }
-      fn xargs [@a]{ e:xargs -I % -n 1 -P (nproc) $@a }
-      fn xssh [@a]{ E:TERM=xterm-256color e:ssh $@a }
-      fn xterm [@a]{ e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a }
-      fn zsh [@a]{ set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a }
+      fn cp {|@a| e:cp --reflink=auto $@a}
+      fn d {|@a| et dev $@a}
+      fn dc {|@a| docker-compose $@a}
+      fn grep {|@a| e:grep --color=auto $@a}
+      fn init-direnv {|| echo "has nix && use nix\ndotenv_if_exists" >> .envrc; touch shell.nix; direnv allow . }
+      fn ls {|@a| e:ls --color=auto -FH --group-directories-first $@a}
+      fn nix-shell {|@a| e:nix-shell --command elvish $@a}
+      fn please {|@a| sudo $@a}
+      fn tar {|@a| bsdtar $@a}
+      fn tf {|@a| terraform $@a}
+      fn tree {|@a| broot $@a}
+      fn vim {|@a| nvim $@a}
+      fn xargs {|@a| e:xargs -I % -n 1 -P (nproc) $@a}
+      fn xssh {|@a| E:TERM=xterm-256color e:ssh $@a}
+      fn xterm {|@a| e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a}
+      fn zsh {|@a| set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a}
 
       -override-wcwidth 🦀 2
 
-      edit:prompt = {
+      set edit:prompt = {
         styled "\n" red
 
         styled "[" red
@@ -243,9 +238,9 @@ in {
 
         put "\n"
       }
-      edit:rprompt = {  }
+      set edit:rprompt = {  }
 
-      fn update-prompt-after-readline [cmd]{
+      fn update-prompt-after-readline {|cmd|
         # clear & reset always erase history so no need to update the timestamp
         if (has-value [clear reset] $cmd) {
           return
@@ -257,15 +252,15 @@ in {
         }
 
         use math
-        lines = 1
-        put $cmd | to-lines | each [line]{
-          len = (count $line)
-          cols = (tput cols)
-          lines = (+ $lines (exact-num (math:ceil (/ $len $cols))))
+        var lines = 1
+        put $cmd | to-lines | each {|line|
+          var len = (count $line)
+          var cols = (tput cols)
+          set lines = (+ $lines (exact-num (math:ceil (/ $len $cols))))
         }
 
         if (== 1 $lines) {
-          lines = 2
+          set lines = 2
         }
 
         tput sc
@@ -273,11 +268,11 @@ in {
         printf "%s%s" (styled "[" red) (styled (date +%H:%M:%S) bright-yellow)
         tput rc
       }
-      edit:after-readline = [$@edit:after-readline $update-prompt-after-readline~]
+      set edit:after-readline = [$@edit:after-readline $update-prompt-after-readline~]
 
       # Filter the command history through the fzf program. This is normally bound
       # to Ctrl-R.
-      fn history []{
+      fn history {||
         var new-cmd = (
           edit:command-history &dedup &newest-first &cmd-only |
           to-terminated "\x00" |
@@ -290,20 +285,20 @@ in {
             return
           }
         )
-        edit:current-command = $new-cmd
+        set edit:current-command = $new-cmd
       }
-      edit:insert:binding[Ctrl-R] = []{ history >/dev/tty 2>&1 }
+      set edit:insert:binding[Ctrl-R] = {|| history >/dev/tty 2>&1 }
 
       eval (cat "${config.xdg.configHome}/lscolors/lscolors.elv")
     '';
     ".local/share/elvish/lib/direnv.elv".text = ''
       ## hook for direnv
-      after-chdir = [$@after-chdir [_]{
+      set after-chdir = [$@after-chdir {|_|
         try {
-          m = [(direnv export elvish | from-json)]
+          var m = [(direnv export elvish | from-json)]
           if (> (count $m) 0) {
-            m = (all $m)
-            keys $m | each [k]{
+            set m = (all $m)
+            keys $m | each {|k|
               if $m[$k] {
                 set-env $k $m[$k]
               } else {
@@ -316,12 +311,12 @@ in {
         }
       }]
 
-      @edit:before-readline = $@edit:before-readline {
+      set @edit:before-readline = $@edit:before-readline {
         try {
-          m = [(direnv export elvish | from-json)]
+          var m = [(direnv export elvish | from-json)]
           if (> (count $m) 0) {
-            m = (all $m)
-            keys $m | each [k]{
+            set m = (all $m)
+            keys $m | each {|k|
               if $m[$k] {
                 set-env $k $m[$k]
               } else {
