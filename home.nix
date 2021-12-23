@@ -270,18 +270,20 @@ in {
       }
       set edit:after-readline = [$@edit:after-readline $update-prompt-after-readline~]
 
-      # Filter the command history through the fzf program. This is normally bound
-      # to Ctrl-R.
+      # Filter the command history through the fzf program. This is normally bound to Ctrl-R.
       fn history {||
         var new-cmd = (
-          edit:command-history &dedup &newest-first &cmd-only |
-          to-terminated "\x00" |
-          try {
-            fzf --no-sort --read0 --layout=reverse --info=hidden --exact ^
+          edit:command-history &dedup &newest-first &cmd-only | to-terminated "\x00" | try {
+            ${pkgs.fzf}/bin/fzf ^
+              --exact ^
+              --info=hidden ^
+              --layout=reverse ^
+              --no-sort ^
+              --read0 ^
               --query=$edit:current-command
           } except {
-            # If the user presses [Escape] to cancel the fzf operation it will exit
-            # with a non-zero status. Ignore that we ran this function in that case.
+            # If the user presses [Escape] to cancel the fzf operation it will exit with a non-zero status.
+            # Ignore that we ran this function in that case.
             return
           }
         )
