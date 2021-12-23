@@ -278,15 +278,18 @@ in {
               --exact ^
               --info=hidden ^
               --layout=reverse ^
+              --no-multi ^
               --no-sort ^
               --read0 ^
-              --query=$edit:current-command
+              --query=$edit:current-command | slurp
           } except {
             # If the user presses [Escape] to cancel the fzf operation it will exit with a non-zero status.
             # Ignore that we ran this function in that case.
+            edit:redraw &full=$true
             return
           }
         )
+        edit:redraw &full=$true
         set edit:current-command = $new-cmd
       }
       set edit:insert:binding[Ctrl-R] = {|| history >/dev/tty 2>&1 }
