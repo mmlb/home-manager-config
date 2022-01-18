@@ -33,7 +33,7 @@ let
   goPackages = with pkgs; [
     asmfmt
     delve
-    errcheck
+    #errcheck
     gdlv
     gnused
     go
@@ -45,7 +45,7 @@ let
     gofumpt
     gogetdoc
     golangci-lint
-    golint
+    #golint
     gomodifytags
     gopls
     gotags
