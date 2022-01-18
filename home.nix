@@ -353,7 +353,7 @@ in {
     pasystray.enable = true;
     redshift = {
       enable = true;
-      package = pkgs.redshift-wlr;
+      package = pkgs.gammastep;
       latitude = "29.621690";
       longitude = "-82.422049";
       temperature = {
