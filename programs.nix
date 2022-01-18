@@ -74,6 +74,10 @@
       includes = [
         {
           contents.user.email = "mmendez@equinix.com";
+          condition = "gitdir:github.com/equinixmetal/";
+        }
+        {
+          contents.user.email = "mmendez@equinix.com";
           condition = "gitdir:github.com/packethost/";
         }
         {
