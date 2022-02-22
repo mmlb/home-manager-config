@@ -45,6 +45,7 @@
         interactive.diffFilter = "delta --diff-so-fancy --color-only";
         log.date = "auto:human";
         merge = {
+          autoStash = true;
           log = true;
           tool = "meld";
           renameLimit = 2048;
@@ -64,6 +65,7 @@
         };
         rebase = {
           autoSquash = true;
+          autoStash = true;
           stat = true;
         };
         rerere.enabled = true;
