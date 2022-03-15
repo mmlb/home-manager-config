@@ -61,6 +61,20 @@ in {
   home.activation.report-changes = config.lib.dag.entryAnywhere ''
     ${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
   '';
+  nixpkgs.overlays = [
+    (self: super: {
+      kitty = super.kitty.overrideAttrs (old: rec {
+        name = old.pname + version;
+        version = "-unstable-2022-02-21g${builtins.substring 0 9 src.rev}";
+        src = super.fetchFromGitHub {
+          owner = "kovidgoyal";
+          repo = "kitty";
+          rev = "2d2f4b9ba92cfb55a5b9cdc3bf8fc3f1ff40e820";
+          sha256 = "1ll5fni6hajvf3sw23nfk0ch3ndvwlkzir23f8dxxarbqqlzr1pi";
+        };
+      });
+    })
+  ];
   home.packages = with pkgs;
     [
       alacritty
