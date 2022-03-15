@@ -70,6 +70,7 @@
         };
         rerere.enabled = true;
         submodule.fetchJobs = 8;
+        submodule.recurse = true;
         url."ssh://github.com/".insteadOf = "https://github.com/";
         user.useConfigOnly = true;
       };
