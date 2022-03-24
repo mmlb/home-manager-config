@@ -117,7 +117,13 @@
             name = "BufSetOption";
             group = "format";
             option = "filetype=nix";
-            commands = ''set-option buffer formatcmd "nixfmt"'';
+            commands = ''
+              %sh{
+                formatcmd=$(which alejandra &>/dev/null && echo alejandra)
+                formatcmd=''${formatcmd:-nixfmt}
+                echo "set-option buffer formatcmd '$formatcmd'" >$kak_command_fifo
+              }
+            '';
           }
           {
             name = "BufSetOption";
