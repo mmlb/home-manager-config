@@ -150,6 +150,7 @@ in {
       pulseeffects-pw
       python3
       python3Packages.bpython
+      python3Packages.python-lsp-server
       restic
       ripgrep
       rofi
