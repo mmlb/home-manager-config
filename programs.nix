@@ -122,6 +122,7 @@
                 formatcmd=$(which alejandra &>/dev/null && echo alejandra)
                 formatcmd=''${formatcmd:-nixfmt}
                 echo "set-option buffer formatcmd '$formatcmd'" >$kak_command_fifo
+                echo "lsp-auto-hover-disable" >$kak_command_fifo
               }
             '';
           }

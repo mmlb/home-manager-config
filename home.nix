@@ -153,6 +153,7 @@ in {
       python3Packages.python-lsp-server
       restic
       ripgrep
+      rnix-lsp
       rofi
       rsync
       shellcheck
