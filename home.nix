@@ -229,7 +229,7 @@ in {
       fn tree {|@a| broot $@a}
       fn vim {|@a| nvim $@a}
       fn xargs {|@a| e:xargs -I % -n 1 -P (nproc) $@a}
-      fn xssh {|@a| E:TERM=xterm-256color e:ssh $@a}
+      fn xssh {|@a| tmp E:TERM = xterm-256color; e:ssh $@a}
       fn xterm {|@a| e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a}
       fn zsh {|@a| set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a}
 
@@ -298,7 +298,7 @@ in {
               --no-sort ^
               --read0 ^
               --query=$edit:current-command | slurp
-          } except {
+          } catch {
             # If the user presses [Escape] to cancel the fzf operation it will exit with a non-zero status.
             # Ignore that we ran this function in that case.
             edit:redraw &full=$true
@@ -327,7 +327,7 @@ in {
               }
             }
           }
-        } except e {
+        } catch e {
           echo $e
         }
       }]
@@ -345,7 +345,7 @@ in {
               }
             }
           }
-        } except e {
+        } catch e {
           echo $e
         }
       }

@@ -152,6 +152,24 @@
             commands = "try %{ evaluate-commands format }";
           }
           {
+            name = "WinSetOption";
+            option = "filetype=zig";
+            commands = ''
+              # configure zls: we enable zig fmt, reference and semantic highlighting
+              set-option buffer formatcmd 'zig fmt --stdin'
+              set-option window lsp_auto_highlight_references true
+              #set-option global lsp_server_configuration zls.zig_lib_path="/usr/lib/zig"
+              set-option -add global lsp_server_configuration zls.warn_style=true
+              set-option -add global lsp_server_configuration zls.enable_semantic_tokens=true
+              hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+              hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+              hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+              hook -once -always window WinSetOption filetype=.* %{
+                  remove-hooks window semantic-tokens
+              }
+            '';
+          }
+          {
             name = "KakBegin";
             option = ".*";
             commands =
