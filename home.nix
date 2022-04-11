@@ -6,6 +6,14 @@ let
     "${config.home.homeDirectory}/.local/bin"
   ];
 
+  # needed for firefox until https://github.com/NixOS/nixpkgs/issues/167785 is fixed
+  lastPkgs = import (pkgs.fetchFromGitHub {
+    owner = "mmlb";
+    repo = "home-manager-nixpkgs";
+    rev = "home-generation-zennix-76";
+    sha256 = "sha256-8uKfZxotkCM1chtbU+H363ZXG+6H+4Vb8EepcuXlGds=";
+  }) { };
+
   gdlv = pkgs.buildGoModule rec {
     pname = "gdlv";
     version = "1.7.0";
@@ -80,7 +88,7 @@ in {
       evince
       fd
       file
-      firefox-wayland
+      lastPkgs.firefox-wayland
       #font-manager
       freetype
       fzf
