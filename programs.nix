@@ -307,7 +307,7 @@
           extraOptions = { "PubKeyAuthentication" = "yes"; };
           user = "manny";
         };
-        "zennix zennix.lan" = {
+        "zennix zennix.lan zdev" = {
           hostname = "192.168.2.127";
           identityFile = [ "~/.ssh/id_ed25519" ];
           extraOptions = { "PubKeyAuthentication" = "yes"; };
