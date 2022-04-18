@@ -76,20 +76,20 @@
       };
       includes = [
         {
-          contents.user.email = "mmendez@equinix.com";
-          condition = "gitdir:github.com/equinixmetal/";
+          condition = "gitdir:github.com/";
+          contents.user.email = "github@i.m.mmlb.dev";
         }
         {
-          contents.user.email = "mmendez@equinix.com";
-          condition = "gitdir:github.com/packethost/";
+          condition = "gitdir:gitlab.com/";
+          contents.user.email = "gitlab@i.m.mmlb.dev";
         }
         {
-          contents.user.email = "mmendez@equinix.com";
-          condition = "gitdir:github.com/tinkerbell/";
+          condition = "gitdir:sr.ht/";
+          contents.user.email = "srht@i.m.mmlb.dev";
         }
       ];
       lfs.enable = true;
-      userEmail = "mmendez534@gmail.com";
+      userEmail = "git@i.m.mmlb.dev";
       userName = "Manuel Mendez";
     };
     kakoune = {
