@@ -364,6 +364,7 @@ in {
         night = 3500;
       };
     };
+    syncthing.enable = true;
   };
   systemd.user.tmpfiles.rules =
     [ "D ${config.xdg.cacheHome}/ssh/control-master/ - - - - -" ];
