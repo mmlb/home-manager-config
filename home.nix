@@ -84,7 +84,6 @@ in {
       #font-manager
       freetype
       fzf
-      gh
       gimp
       git
       git-absorb

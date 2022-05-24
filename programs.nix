@@ -10,6 +10,14 @@
       '';
     };
     fzf.enable = true;
+    gh = {
+      enable = true;
+      enableGitCredentialHelper = true;
+      settings.aliases = {
+        co = "pr checkout";
+        pv = "pr view";
+      };
+    };
     git = {
       enable = true;
       aliases = {
@@ -71,7 +79,6 @@
         rerere.enabled = true;
         submodule.fetchJobs = 8;
         submodule.recurse = true;
-        url."ssh://github.com/".insteadOf = "https://github.com/";
         user.useConfigOnly = true;
       };
       includes = [
