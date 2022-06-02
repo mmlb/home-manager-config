@@ -123,7 +123,7 @@ in {
       nodePackages.bash-language-server
       nodePackages.prettier
       nodePackages.pyright
-      noisetorch
+      #noisetorch # marked insecure, see https://github.com/noisetorch/NoiseTorch#regarding-the-recent-security-incident
       nvd
       pamixer
       pasystray
