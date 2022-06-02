@@ -96,6 +96,7 @@ in {
       go-2fa
       gron
       gtk3
+      helix
       hexyl
       htop
       hyperfine
