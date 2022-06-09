@@ -210,6 +210,7 @@ in {
       fn tar {|@a| bsdtar $@a}
       fn tf {|@a| terraform $@a}
       fn tree {|@a| broot $@a}
+      fn vagrant {|@a| tmp E:TERM = xterm-256color; e:vagrant $@a}
       fn vim {|@a| nvim $@a}
       fn xargs {|@a| e:xargs -I % -n 1 -P (nproc) $@a}
       fn xssh {|@a| tmp E:TERM = xterm-256color; e:ssh $@a}
