@@ -204,7 +204,7 @@ in {
       fn cp {|@a| e:cp --reflink=auto $@a}
       fn d {|@a| et dev $@a}
       fn dc {|@a| docker-compose $@a}
-      fn grep {|@a| e:git grep --no-index --exclude-standard --color=auto $@a}
+      fn grep {|@a| if ?(test -t 0) { e:git grep --no-index --exclude-standard --color=auto $@a } else { e:grep $@a }}
       fn ls {|@a| e:ls --color=auto -FH --group-directories-first $@a}
       fn nix-shell {|@a| e:nix-shell --command elvish $@a}
       fn tar {|@a| bsdtar $@a}
