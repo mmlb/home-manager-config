@@ -249,9 +249,10 @@
         KexAlgorithms = diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
         PubKeyAuthentication = no
       '';
-      extraOptionOverrides = {
-        "Include" = "~/.ssh/packet-ssh-config/config_packet";
-      };
+      includes = [
+        "~/.ssh/packet-ssh-config/config_packet"
+        "~/.ssh/include.d/*.config"
+      ];
       matchBlocks = {
         "*" = {
           identitiesOnly = true;

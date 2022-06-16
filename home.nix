@@ -210,7 +210,7 @@ in {
       fn tar {|@a| bsdtar $@a}
       fn tf {|@a| terraform $@a}
       fn tree {|@a| broot $@a}
-      fn vagrant {|@a| tmp E:TERM = xterm-256color; e:vagrant $@a}
+      fn vagrant {|@a| if (and (> (count $a) 0) (eq $a[0] ssh-config)) { set a = $a[1..]; e:vagrant ssh-config $@a | sed 's|IdentityFile|PubkeyAuthentication yes\n  SetEnv TERM=xterm-256color\n  &|' } else { e:vagrant $@a } }
       fn vim {|@a| nvim $@a}
       fn xargs {|@a| e:xargs -I % -n 1 -P (nproc) $@a}
       fn xssh {|@a| tmp E:TERM = xterm-256color; e:ssh $@a}
