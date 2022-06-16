@@ -93,6 +93,7 @@ in {
       git-lfs
       git-revise
       gitstatus
+      glow
       go-2fa
       gron
       gtk3
