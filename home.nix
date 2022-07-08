@@ -36,7 +36,7 @@ let
     #errcheck
     gdlv
     gnused
-    go
+    go_1_18
     go-motion
     go-tools
     gocode
