@@ -71,6 +71,7 @@ in {
       broot
       colordiff
       delta
+      difftastic
       direnv
       dnsutils
       duperemove

@@ -22,6 +22,7 @@
       enable = true;
       aliases = {
         hub = "!${pkgs.gitAndTools.hub}/bin/hub";
+        dft = "difftool";
         lg =
           "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
         log1 = "log --oneline";
@@ -29,10 +30,6 @@
         log1r = "log --oneline --reverse";
         log1rm = "log --oneline --reverse master..";
         mt = "!mergetool";
-      };
-      delta = {
-        enable = false;
-        options = { };
       };
       extraConfig = {
         advice.implicitIdentity = false;
@@ -46,8 +43,12 @@
           algorithm = "histogram";
           renames = "copies";
           submodule = "log";
+          tool = "difftastic";
         };
-        difftool.prompt = "no";
+        difftool = {
+          prompt = false;
+          "difftastic" = { cmd = ''difft "$LOCAL" "$REMOTE"''; };
+        };
         help.autoCorrect = 1;
         init.defaultBranch = "main";
         interactive.diffFilter = "delta --diff-so-fancy --color-only";
@@ -63,6 +64,7 @@
           prompt = "no";
         };
         pager = {
+          difftool = true;
           diff = "delta --diff-so-fancy";
           show = "delta --diff-so-fancy";
         };
