@@ -181,7 +181,7 @@ in {
 
       use direnv
       #use github.com/zzamboni/elvish-completions/git
-      use github.com/zzamboni/elvish-completions/ssh
+      #use github.com/zzamboni/elvish-completions/ssh
       use github.com/zzamboni/elvish-modules/long-running-notifications
       use github.com/xiaq/edit.elv/smart-matcher
 
