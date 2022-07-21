@@ -48,7 +48,6 @@ let
     #golint
     gomodifytags
     gopls
-    gotags
     gotools
     iferr
     impl
