@@ -29,20 +29,12 @@
           end
         '';
         fish_prompt.body = ''
-          set bryellow (set_color bryellow)
-          set cyan (set_color cyan)
-          set red (set_color red)
-
-          printf -- '%s[%s--:--:--%s]' $red $bryellow $red
-          printf -- '-'
-          printf -- '[%s%s%s]' $bryellow (prompt_pwd) $red
-          printf -- '-[%s%s%s]\n\n' $cyan (prompt_login) $red
+          set y (set_color bryellow)
+          set r (set_color red)
+          printf -- $r'['$y'--:--:--'$r']-['$y(prompt_pwd)$r']-['(prompt_login)$r']\n\n'
         '';
         update_prompt_time.body = ''
           set ignores clear exit reset
-
-          set bryellow (set_color bryellow)
-          set red (set_color red)
 
           # clear & reset always erase history so no need to update the timestamp
           if contains $argv $ignore
@@ -66,9 +58,12 @@
               set lines 2
           end
 
+          set y (set_color bryellow)
+          set r (set_color red)
+
           tput sc
           tput cuu $lines
-          printf '%s[%s%s' $red $bryellow (date +%H:%M:%S)
+          printf -- $r'['$y(date +%H:%M:%S)
           tput rc
 
           commandline -f repaint
