@@ -217,7 +217,7 @@ in {
       fn xssh {|@a| tmp E:TERM = xterm-256color; e:ssh $@a}
       fn xterm {|@a| e:xterm -f "${config.xdg.configHome}/xterm/xterm.conf" $@a}
       fn z {|@a| et zdev $@a}
-      fn zsh {|@a| set-env ZSH_NO_EXEC_ELVISH 1; e:zsh $@a}
+      fn zsh {|@a| set-env ZSH_NO_EXEC_REAL_SHELL 1; e:zsh $@a}
 
       -override-wcwidth 🦀 2
 

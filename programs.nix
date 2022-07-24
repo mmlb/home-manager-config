@@ -2,12 +2,96 @@
   programs = {
     direnv = {
       enable = true;
-      enableFishIntegration = false;
       stdlib = ''
         use_nix() {
                 eval "$(lorri direnv)"
         }
       '';
+    };
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        function update_prompt_prexec --on-event="fish_preexec"; update_prompt_time "$argv"; end
+      '';
+      functions = {
+        grep.body = ''
+          if test -t 0
+              git grep --no-index --exclude-standard --color=auto $argv
+          else
+              command grep $argv
+          end
+        '';
+        vagrant.body = ''
+          if (count $argv) -gt 0; and test $argv[1] = ssh-config
+              command vagrant $argv | sed 's|IdentityFile|PubkeyAuthentication yes\n  SetEnv TERM=xterm-256color\n  &|'
+          else
+              command vagrant $argv
+          end
+        '';
+        fish_prompt.body = ''
+          set bryellow (set_color bryellow)
+          set cyan (set_color cyan)
+          set red (set_color red)
+
+          printf -- '%s[%s--:--:--%s]' $red $bryellow $red
+          printf -- '-'
+          printf -- '[%s%s%s]' $bryellow (prompt_pwd) $red
+          printf -- '-[%s%s%s]\n\n' $cyan (prompt_login) $red
+        '';
+        update_prompt_time.body = ''
+          set ignores clear exit reset
+
+          set bryellow (set_color bryellow)
+          set red (set_color red)
+
+          # clear & reset always erase history so no need to update the timestamp
+          if contains $argv $ignore
+              return
+          end
+
+          # the earliest elvish has SHLVL=2 so anything greater is run in a subshell that is probably being used interactively
+          # lower leveled shells will most likely close the terminal window and thus no need to update the timestamp
+          if test $SHLVL -gt 2; and contains $argv $ignore
+              return
+          end
+
+          set lines 1
+          set lens (string length --visible $argv)
+          set cols (tput cols)
+          for l in $lens
+              set lines (math "$lines + ceil($l/$cols)")
+          end
+
+          if test $lines -eq 1
+              set lines 2
+          end
+
+          tput sc
+          tput cuu $lines
+          printf '%s[%s%s' $red $bryellow (date +%H:%M:%S)
+          tput rc
+
+          commandline -f repaint
+        '';
+      };
+      shellAbbrs = {
+        a = "et adev";
+        cat = "bat";
+        dc = "docker-compose";
+        tar = "bsdtar";
+        tf = "terraform";
+        tree = "broot";
+        vim = "nvim";
+        xssh = "TERM=xterm-256color ssh";
+        z = "et zdev";
+      };
+      shellAliases = {
+        cp = "cp --reflink=auto";
+        ls = "ls --color=auto -FH --group-directories-first";
+        #grep = "if test -t 0; git grep --no-index --exclude-standard --color=auto $argv; else; grep $argv; end";
+        nix-shell = "nix-shell --command fish";
+        zsh = "ZSH_NO_EXEC_REAL_SHELL=1 zsh";
+      };
     };
     fzf.enable = true;
     gh = {
