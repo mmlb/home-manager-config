@@ -88,9 +88,8 @@
       shellAliases = {
         cp = "cp --reflink=auto";
         ls = "ls --color=auto -FH --group-directories-first";
-        #grep = "if test -t 0; git grep --no-index --exclude-standard --color=auto $argv; else; grep $argv; end";
         nix-shell = "nix-shell --command fish";
-        zsh = "ZSH_NO_EXEC_REAL_SHELL=1 zsh";
+        zsh = "ZSH_NO_EXEC_REAL_SHELL=1 command zsh";
       };
     };
     fzf.enable = true;
