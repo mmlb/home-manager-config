@@ -11,6 +11,8 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
+        set -x MAKEFLAGS -j(math (nproc) + 1)
+        set -x TMPDIR $XDG_RUNTIME_DIR/tmp
         function update_prompt_prexec --on-event="fish_preexec"; update_prompt_time "$argv"; end
       '';
       functions = {
