@@ -28,6 +28,7 @@ let
     impl
     reftools
   ];
+  guitarPackages = with pkgs; [ nootka guitarix ];
 
 in {
   imports = [ ./programs.nix ./sway.nix ];
@@ -143,7 +144,7 @@ in {
       xdg-user-dirs
       xdg_utils
       xterm
-    ] ++ goDevPackages;
+    ] ++ goDevPackages ++ guitarPackages;
 
   home.file = {
     ".cargo/config.toml".text = ''
