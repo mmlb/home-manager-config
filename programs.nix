@@ -13,6 +13,7 @@
       interactiveShellInit = ''
         set -x MAKEFLAGS -j(math (nproc) + 1)
         set -x TMPDIR $XDG_RUNTIME_DIR/tmp
+        test -d $TMPDIR; or mkdir -p $TMPDIR
         function update_prompt_prexec --on-event="fish_preexec"; update_prompt_time "$argv"; end
       '';
       functions = {
