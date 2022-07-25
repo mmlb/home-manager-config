@@ -30,7 +30,7 @@ let
     vendorSha256 = "0sjjj9z1dhilhpc8pq4154czrb79z9cm044jvn75kxcjv6v5l2m5";
   };
 
-  goPackages = with pkgs; [
+  goDevPackages = with pkgs; [
     asmfmt
     delve
     #errcheck
@@ -167,7 +167,7 @@ in {
       xdg-user-dirs
       xdg_utils
       xterm
-    ] ++ goPackages;
+    ] ++ goDevPackages;
 
   home.file = {
     ".cargo/config.toml".text = ''
