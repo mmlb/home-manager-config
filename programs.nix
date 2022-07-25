@@ -81,7 +81,6 @@
         tree = "broot";
         vim = "nvim";
         xssh = "TERM=xterm-256color ssh";
-        z = "et zdev";
       };
       shellAliases = {
         cp = "cp --reflink=auto";
@@ -611,5 +610,6 @@
         }
       '';
     };
+    zoxide.enable = true;
   };
 }
