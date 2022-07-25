@@ -35,7 +35,6 @@ let
     delve
     #errcheck
     gdlv
-    gnused
     go_1_18
     go-motion
     go-tools
@@ -52,7 +51,6 @@ let
     iferr
     impl
     reftools
-    tcat
   ];
 
 in {
@@ -93,6 +91,7 @@ in {
       git-lfs
       git-revise
       gitstatus
+      gnused
       glow
       go-2fa
       gron
@@ -151,6 +150,7 @@ in {
       socat
       sshpass
       sway-contrib.grimshot
+      tcat
       tmate
       tmux
       tree
