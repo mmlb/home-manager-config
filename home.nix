@@ -324,6 +324,7 @@ in {
     XDG_SESSION_TYPE = "wayland";
     XKB_DEFAULT_OPTIONS = "ctrl:nocaps";
   };
+  home.stateVersion = "18.09";
 
   nixpkgs.config = { andrdoid_sdk.accept_license = true; };
 
