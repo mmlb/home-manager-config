@@ -318,11 +318,11 @@ in {
     EDITOR = "${pkgs.kakoune}/bin/kak";
     KEYTIMEOUT = "1";
     LESS = "AFRSX";
+    PATH = "${lib.strings.concatStringsSep ":" prependPaths}:$PATH";
     VISUAL = "${config.home.sessionVariables.EDITOR}";
     XDG_CURRENT_DESKTOP = "sway";
     XDG_SESSION_TYPE = "wayland";
     XKB_DEFAULT_OPTIONS = "ctrl:nocaps";
-    PATH = "${lib.strings.concatStringsSep ":" prependPaths}:$PATH";
   };
 
   nixpkgs.config = { andrdoid_sdk.accept_license = true; };
