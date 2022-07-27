@@ -195,7 +195,10 @@
             name = "BufSetOption";
             group = "format";
             option = "filetype=go";
-            commands = ''set-option buffer formatcmd "goimports -e"'';
+            commands = ''
+              set-option buffer formatcmd "goimports -e"
+              set-option global disabled_hooks .*-insert
+            '';
           }
           {
             name = "BufSetOption";
