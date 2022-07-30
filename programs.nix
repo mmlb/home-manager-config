@@ -72,20 +72,18 @@
           commandline -f repaint
         '';
       };
-      shellAbbrs = {
+      shellAliases = {
         a = "et adev";
         cat = "bat";
+        cp = "cp --reflink=auto";
         dc = "docker-compose";
+        ls = "ls --color=auto -FH --group-directories-first";
+        nix-shell = "nix-shell --command fish";
         tar = "bsdtar";
         tf = "terraform";
         tree = "broot";
         vim = "nvim";
         xssh = "TERM=xterm-256color ssh";
-      };
-      shellAliases = {
-        cp = "cp --reflink=auto";
-        ls = "ls --color=auto -FH --group-directories-first";
-        nix-shell = "nix-shell --command fish";
         zsh = "ZSH_NO_EXEC_REAL_SHELL=1 command zsh";
       };
     };
