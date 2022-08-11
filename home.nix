@@ -38,6 +38,7 @@ in {
   home.packages = with pkgs;
     [
       alacritty
+      alejandra
       asciinema
       bat
       bitwarden-cli
