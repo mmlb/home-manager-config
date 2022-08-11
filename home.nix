@@ -105,6 +105,7 @@ in {
       noisetorch
       nvd
       pamixer
+      parallel
       pasystray
       pavucontrol
       pigz
