@@ -136,6 +136,7 @@ in {
       tmate
       tmux
       tree
+      unzip
       v4l-utils
       vim
       vlc
