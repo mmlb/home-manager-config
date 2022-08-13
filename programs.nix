@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs = {
     direnv = {
       enable = true;
@@ -101,8 +105,7 @@
       aliases = {
         hub = "!${pkgs.gitAndTools.hub}/bin/hub";
         dft = "difftool";
-        lg =
-          "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
         log1 = "log --oneline";
         log1m = "log --oneline master..";
         log1r = "log --oneline --reverse";
@@ -125,7 +128,7 @@
         };
         difftool = {
           prompt = false;
-          "difftastic" = { cmd = ''difft "$LOCAL" "$REMOTE"''; };
+          "difftastic" = {cmd = ''difft "$LOCAL" "$REMOTE"'';};
         };
         help.autoCorrect = 1;
         init.defaultBranch = "main";
@@ -232,8 +235,7 @@
             name = "BufSetOption";
             group = "format";
             option = "filetype=yaml";
-            commands =
-              ''set-option buffer formatcmd "prettier --parser=yaml" '';
+            commands = ''set-option buffer formatcmd "prettier --parser=yaml" '';
           }
           {
             name = "BufWritePost";
@@ -262,14 +264,12 @@
           {
             name = "KakBegin";
             option = ".*";
-            commands =
-              "try %{ source ${config.home.homeDirectory}/.local/share/kak/kak_history }";
+            commands = "try %{ source ${config.home.homeDirectory}/.local/share/kak/kak_history }";
           }
           {
             name = "KakEnd";
             option = ".*";
-            commands =
-              "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
+            commands = "echo -to-file ${config.home.homeDirectory}/.local/share/kak/kak_history -quoting kakoune reg : %reg{:}";
           }
         ];
         numberLines = {
@@ -339,80 +339,80 @@
       matchBlocks = {
         "*" = {
           identitiesOnly = true;
-          extraOptions = { };
+          extraOptions = {};
         };
         "*.packet.net *.packet.rocks *.packethost.net" = {
-          extraOptions = { "SetEnv" = "TERM=xterm-256color"; };
+          extraOptions = {"SetEnv" = "TERM=xterm-256color";};
         };
         "*.lan *.local" = {
-          identityFile = [ "~/.ssh/id_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/id_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
         };
         "bartender" = {
           hostname = "bartender.dixiepineacres.com";
-          identityFile = [ "~/.ssh/id_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/id_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "root";
         };
         "porter" = {
           hostname = "57941012.packethost.net";
-          identityFile = [ "~/.ssh/packethost_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/packethost_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "root";
         };
         "waiter" = {
           hostname = "58ee5b80.packethost.net";
-          identityFile = [ "~/.ssh/packethost_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/packethost_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "root";
         };
         "github.com gist.github.com" = {
-          identityFile = [ "~/.ssh/github_id_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/github_id_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "git";
         };
         "gitlab.com" = {
-          identityFile = [ "~/.ssh/gitlab" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/gitlab"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "git";
         };
         "gitlab.alpinelinux.org" = {
-          identityFile = [ "~/.ssh/gitlab.alpinelinux.org" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/gitlab.alpinelinux.org"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "git";
         };
         "git.sr.ht" = {
-          identityFile = [ "~/.ssh/id_srht" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/id_srht"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "git";
         };
         "nix350 nix350.lan nix710 nix710.lan" = {
           hostname = "192.168.2.125";
-          identityFile = [ "~/.ssh/id_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/id_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "manny";
         };
         "dellnix dellnix.lan" = {
           hostname = "192.168.2.70";
-          identityFile = [ "~/.ssh/id_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/id_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "manny";
         };
         "zennix zennix.lan zdev" = {
           hostname = "192.168.2.127";
-          identityFile = [ "~/.ssh/id_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/id_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "manny";
         };
         "router.lan router" = {
           hostname = "192.168.1.1";
-          identityFile = [ "~/.ssh/id_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/id_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "root";
         };
         "adev" = {
           hostname = "f9d67017.packethost.net";
-          identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
+          identityFile = ["~/.ssh/packet-ssh-config/packethost_ed25519"];
           extraOptions = {
             "PubKeyAuthentication" = "yes";
             "SetEnv" = "TERM=xterm-256color";
@@ -421,118 +421,120 @@
         };
         "dev" = {
           hostname = "dec786eb.packethost.net";
-          identityFile = [ "~/.ssh/packet-ssh-config/packethost_ed25519" ];
-          extraOptions = { "PubKeyAuthentication" = "yes"; };
+          identityFile = ["~/.ssh/packet-ssh-config/packethost_ed25519"];
+          extraOptions = {"PubKeyAuthentication" = "yes";};
           user = "manny";
         };
       };
     };
     waybar = {
       enable = true;
-      settings = [{
-        layer = "top";
-        position = "top";
-        modules-left = [ "sway/workspaces" "custom/right-arrow-dark" ];
-        modules-center = [
-          "custom/left-arrow-dark"
-          "clock#1"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "clock#2"
-          "custom/right-arrow-dark"
-          "custom/right-arrow-light"
-          "clock#3"
-          "custom/right-arrow-dark"
-        ];
-        modules-right = [
-          "custom/left-arrow-dark"
-          "pulseaudio"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "memory"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "cpu"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "battery"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "disk"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "tray"
-        ];
-        modules = {
-          "custom/left-arrow-dark" = {
-            format = "";
-            tooltip = false;
-          };
-          "custom/left-arrow-light" = {
-            format = "";
-            tooltip = false;
-          };
-          "custom/right-arrow-dark" = {
-            format = "";
-            tooltip = false;
-          };
-          "custom/right-arrow-light" = {
-            format = "";
-            tooltip = false;
-          };
-          "sway/workspaces" = {
-            disable-scroll = true;
-            format = "{name}";
-          };
-          "clock#1" = {
-            format = "{:%a}";
-            tooltip = false;
-          };
-          "clock#2" = {
-            format = "{:%H:%M}";
-            tooltip = false;
-          };
-          "clock#3" = {
-            format = "{:%m-%d}";
-            tooltip = false;
-          };
-          pulseaudio = {
-            format = "{icon} {volume:2}%";
-            format-bluetooth = "{icon}  {volume}%";
-            format-muted = "MUTE";
-            format-icons = {
-              headphones = "";
-              default = [ "" "" ];
+      settings = [
+        {
+          layer = "top";
+          position = "top";
+          modules-left = ["sway/workspaces" "custom/right-arrow-dark"];
+          modules-center = [
+            "custom/left-arrow-dark"
+            "clock#1"
+            "custom/left-arrow-light"
+            "custom/left-arrow-dark"
+            "clock#2"
+            "custom/right-arrow-dark"
+            "custom/right-arrow-light"
+            "clock#3"
+            "custom/right-arrow-dark"
+          ];
+          modules-right = [
+            "custom/left-arrow-dark"
+            "pulseaudio"
+            "custom/left-arrow-light"
+            "custom/left-arrow-dark"
+            "memory"
+            "custom/left-arrow-light"
+            "custom/left-arrow-dark"
+            "cpu"
+            "custom/left-arrow-light"
+            "custom/left-arrow-dark"
+            "battery"
+            "custom/left-arrow-light"
+            "custom/left-arrow-dark"
+            "disk"
+            "custom/left-arrow-light"
+            "custom/left-arrow-dark"
+            "tray"
+          ];
+          modules = {
+            "custom/left-arrow-dark" = {
+              format = "";
+              tooltip = false;
             };
-            scroll-step = 5;
-            on-click = "pamixer -t";
-            on-click-right = "pavucontrol";
-          };
-          memory = {
-            interval = 5;
-            format = "Mem {}%";
-          };
-          cpu = {
-            interval = 5;
-            format = "CPU {usage:2}%";
-          };
-          battery = {
-            states = {
-              good = 95;
-              warning = 30;
-              critical = 15;
+            "custom/left-arrow-light" = {
+              format = "";
+              tooltip = false;
             };
-            format = "{icon} {capacity}%";
-            format-icons = [ "" "" "" "" "" ];
+            "custom/right-arrow-dark" = {
+              format = "";
+              tooltip = false;
+            };
+            "custom/right-arrow-light" = {
+              format = "";
+              tooltip = false;
+            };
+            "sway/workspaces" = {
+              disable-scroll = true;
+              format = "{name}";
+            };
+            "clock#1" = {
+              format = "{:%a}";
+              tooltip = false;
+            };
+            "clock#2" = {
+              format = "{:%H:%M}";
+              tooltip = false;
+            };
+            "clock#3" = {
+              format = "{:%m-%d}";
+              tooltip = false;
+            };
+            pulseaudio = {
+              format = "{icon} {volume:2}%";
+              format-bluetooth = "{icon}  {volume}%";
+              format-muted = "MUTE";
+              format-icons = {
+                headphones = "";
+                default = ["" ""];
+              };
+              scroll-step = 5;
+              on-click = "pamixer -t";
+              on-click-right = "pavucontrol";
+            };
+            memory = {
+              interval = 5;
+              format = "Mem {}%";
+            };
+            cpu = {
+              interval = 5;
+              format = "CPU {usage:2}%";
+            };
+            battery = {
+              states = {
+                good = 95;
+                warning = 30;
+                critical = 15;
+              };
+              format = "{icon} {capacity}%";
+              format-icons = ["" "" "" "" ""];
+            };
+            disk = {
+              interval = 5;
+              format = "Disk {percentage_used:2}%";
+              path = "/";
+            };
+            tray = {icon-size = 20;};
           };
-          disk = {
-            interval = 5;
-            format = "Disk {percentage_used:2}%";
-            path = "/";
-          };
-          tray = { icon-size = 20; };
-        };
-      }];
+        }
+      ];
       systemd.enable = true;
       style = ''
         * {

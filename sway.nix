@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
-let mod = config.wayland.windowManager.sway.config.modifier;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  mod = config.wayland.windowManager.sway.config.modifier;
 in {
   wayland.windowManager.sway = {
     enable = true;
     config = {
-      assigns."17:meld" = [{ app_id = "org.gnome.meld"; }];
-      bars = [ ];
+      assigns."17:meld" = [{app_id = "org.gnome.meld";}];
+      bars = [];
       colors = {
         focused = {
           border = "#2f343f";
@@ -36,7 +41,7 @@ in {
           text = "#f3f4f5";
         };
       };
-      fonts = { names = [ "Iosevka 12" ]; };
+      fonts = {names = ["Iosevka 12"];};
       input = {
         "DELL08AF:00 06CB:76AF Touchpad" = {
           tap = "enabled";
@@ -75,26 +80,21 @@ in {
         "${mod}+q" = "exec ~/bin/focus-last.py --switch";
         "Print" = "exec ~/bin/grimshot-printscreen";
 
-        "XF86AudioLowerVolume" =
-          "exec --no-startup-id pactl set-sink-volume 0 -5%";
+        "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%";
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-volume 0 toggle";
         "XF86AudioNext" = "exec --no-startup-id playerctl next";
         "XF86AudioPause" = "exec --no-startup-id playerctl pause";
         "XF86AudioPlay" = "exec --no-startup-id playerctl play";
         "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
-        "XF86AudioRaiseVolume" =
-          "exec --no-startup-id pactl set-sink-volume 0 +5%";
+        "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%";
 
-        "XF86MonBrightnessUp" =
-          "exec --no-startup-id light -A 10 -s sysfs/backligh/intel_backlight";
-        "XF86MonBrightnessDown" =
-          "exec --no-startup-id light -U 10 -s sysfs/backligh/intel_backlight";
+        "XF86MonBrightnessUp" = "exec --no-startup-id light -A 10 -s sysfs/backligh/intel_backlight";
+        "XF86MonBrightnessDown" = "exec --no-startup-id light -U 10 -s sysfs/backligh/intel_backlight";
 
         # changed from defaults
         "${mod}+n" = "splith";
         "${mod}+p" = "focus parent";
-        "${mod}+r" =
-          "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
+        "${mod}+r" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
         "${mod}+t" = "layout toggle split";
 
         "${mod}+Control+e" = "exit";
@@ -116,10 +116,10 @@ in {
           position = "0,0";
           scale = "2";
         };
-        HDMI-A-1 = { scale = "2"; };
-        HDMI-A-2 = { scale = "2"; };
-        HDMI-A-3 = { scale = "2"; };
-        HDMI-A-4 = { scale = "2"; };
+        HDMI-A-1 = {scale = "2";};
+        HDMI-A-2 = {scale = "2";};
+        HDMI-A-3 = {scale = "2";};
+        HDMI-A-4 = {scale = "2";};
       };
       startup = [
         {
@@ -127,13 +127,15 @@ in {
             swayidle timeout 1200 'swaylock -c 000000' timeout 1500 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -c 000000'
           '';
         }
-        { command = "systemctl --user import-environment"; }
+        {command = "systemctl --user import-environment";}
       ];
       terminal = "${pkgs.kitty}/bin/kitty";
-      window.commands = [{
-        command = "floating toggle, move scratchpad";
-        criteria = { title = "Firefox [-—] Sharing Indicator"; };
-      }];
+      window.commands = [
+        {
+          command = "floating toggle, move scratchpad";
+          criteria = {title = "Firefox [-—] Sharing Indicator";};
+        }
+      ];
       workspaceAutoBackAndForth = true;
     };
     wrapperFeatures.gtk = true;

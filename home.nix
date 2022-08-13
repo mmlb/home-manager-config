@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   prependPaths = [
     "${config.home.homeDirectory}/bin"
     "${config.home.homeDirectory}/go/bin"
@@ -28,10 +32,9 @@ let
     impl
     reftools
   ];
-  guitarPackages = with pkgs; [ nootka guitarix ];
-
+  guitarPackages = with pkgs; [nootka guitarix];
 in {
-  imports = [ ./programs.nix ./sway.nix ];
+  imports = [./programs.nix ./sway.nix];
   home.activation.report-changes = config.lib.dag.entryAnywhere ''
     ${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
   '';
@@ -146,7 +149,9 @@ in {
       xdg-user-dirs
       xdg_utils
       xterm
-    ] ++ goDevPackages ++ guitarPackages;
+    ]
+    ++ goDevPackages
+    ++ guitarPackages;
 
   home.file = {
     ".cargo/config.toml".text = ''
@@ -328,7 +333,7 @@ in {
   };
   home.stateVersion = "18.09";
 
-  nixpkgs.config = { andrdoid_sdk.accept_license = true; };
+  nixpkgs.config = {andrdoid_sdk.accept_license = true;};
 
   services = {
     lorri.enable = true;
@@ -345,8 +350,7 @@ in {
     };
     syncthing.enable = true;
   };
-  systemd.user.tmpfiles.rules =
-    [ "D ${config.xdg.cacheHome}/ssh/control-master/ - - - - -" ];
+  systemd.user.tmpfiles.rules = ["D ${config.xdg.cacheHome}/ssh/control-master/ - - - - -"];
 
   xdg = {
     enable = true;
