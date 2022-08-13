@@ -105,7 +105,6 @@ in {
       nodePackages.bash-language-server
       nodePackages.prettier
       nodePackages.pyright
-      noisetorch
       nvd
       pamixer
       parallel
