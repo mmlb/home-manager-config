@@ -129,7 +129,7 @@ in {
         }
         {command = "systemctl --user import-environment";}
       ];
-      terminal = "${pkgs.kitty}/bin/kitty";
+      terminal = "${pkgs.foot}/bin/foot";
       window.commands = [
         {
           command = "floating toggle, move scratchpad";
