@@ -61,6 +61,7 @@ in {
       file
       firefox-wayland
       #font-manager
+      foot
       freetype
       fzf
       gimp
