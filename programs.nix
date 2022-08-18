@@ -91,6 +91,42 @@
         zsh = "ZSH_NO_EXEC_REAL_SHELL=1 command zsh";
       };
     };
+    foot = {
+      enable = true;
+      settings = {
+        main = {
+          font = "VictorMono SemiBold:size=16";
+          dpi-aware = "yes";
+        };
+        colors = {
+          foreground = "c3ccdc";
+          background = "011627";
+          selection-background = "1d3b53";
+
+          regular0 = "1d3b53";
+          regular1 = "fc514e";
+          regular2 = "a1cd5e";
+          regular3 = "e7d37a";
+          regular4 = "82aaff";
+          regular5 = "c792ea";
+          regular6 = "7fdbca";
+          regular7 = "a1aab8";
+
+          bright0 = "7c8f8f";
+          bright1 = "ff5874";
+          bright2 = "21c7a8";
+          bright3 = "ecc48d";
+          bright4 = "82aaff";
+          bright5 = "ae81ff";
+          bright6 = "7fdbca";
+          bright7 = "d6deeb";
+        };
+        mouse = {
+          #color = "82aaff";
+          hide-when-typing = "yes";
+        };
+      };
+    };
     fzf.enable = true;
     gh = {
       enable = true;
