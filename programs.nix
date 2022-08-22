@@ -218,6 +218,12 @@
       userEmail = "git@i.m.mmlb.dev";
       userName = "Manuel Mendez";
     };
+    helix = {
+      enable = true;
+      settings = {
+        theme = "gruvbox";
+      };
+    };
     kakoune = {
       enable = true;
       config = {
