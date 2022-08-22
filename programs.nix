@@ -95,8 +95,8 @@
       enable = true;
       settings = {
         main = {
-          font = "VictorMono SemiBold:size=10";
-          dpi-aware = "yes";
+          font = "VictorMono SemiBold:size=16";
+          dpi-aware = "no";
         };
         colors = {
           foreground = "c3ccdc";
