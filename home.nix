@@ -47,6 +47,7 @@ in {
       bitwarden-cli
       blueman
       broot
+      chromium
       colordiff
       delta
       difftastic
