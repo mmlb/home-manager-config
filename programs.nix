@@ -99,27 +99,27 @@
           dpi-aware = "no";
         };
         colors = {
-          foreground = "c3ccdc";
-          background = "011627";
-          selection-background = "1d3b53";
+          # Gruvbox
+          background = "282828";
+          foreground = "ebdbb2";
 
-          regular0 = "1d3b53";
-          regular1 = "fc514e";
-          regular2 = "a1cd5e";
-          regular3 = "e7d37a";
-          regular4 = "82aaff";
-          regular5 = "c792ea";
-          regular6 = "7fdbca";
-          regular7 = "a1aab8";
+          regular0 = "282828";
+          regular1 = "cc241d";
+          regular2 = "98971a";
+          regular3 = "d79921";
+          regular4 = "458588";
+          regular5 = "b16286";
+          regular6 = "689d6a";
+          regular7 = "a89984";
 
-          bright0 = "7c8f8f";
-          bright1 = "ff5874";
-          bright2 = "21c7a8";
-          bright3 = "ecc48d";
-          bright4 = "82aaff";
-          bright5 = "ae81ff";
-          bright6 = "7fdbca";
-          bright7 = "d6deeb";
+          bright0 = "928374";
+          bright1 = "fb4934";
+          bright2 = "b8bb26";
+          bright3 = "fabd2f";
+          bright4 = "83a598";
+          bright5 = "d3869b";
+          bright6 = "8ec07c";
+          bright7 = "ebdbb2";
         };
         mouse = {
           #color = "82aaff";
