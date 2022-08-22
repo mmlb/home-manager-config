@@ -347,7 +347,7 @@
         }
 
         plug "kak-lsp/kak-lsp" do %{
-            nix-shell -p cargo gcc --run "cargo install --locked --force --path ."
+            nix-shell -p cargo gcc --run 'cargo build --release --locked && cargo install --force --path .'
         }
         lsp-enable
         lsp-auto-hover-enable
