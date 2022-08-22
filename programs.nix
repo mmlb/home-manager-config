@@ -343,7 +343,7 @@
             ': inc-dec-modify-numbers - %val{count}<ret>'
 
         plug "ul/kak-tree" do %{
-            nix-shell -p cargo gcc --run 'cargo install --locked --force --path .  --features "bash go html python ruby"'
+            nix-shell -p cargo gcc --run 'cargo build --release --locked --features "bash go html python ruby" && cargo install --force --features "bash go html python ruby" --path .'
         }
 
         plug "kak-lsp/kak-lsp" do %{
