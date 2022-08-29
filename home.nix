@@ -162,6 +162,7 @@ in {
       [install]
       root = "${config.home.homeDirectory}/.local"
     '';
+      ".zshrc".source = ./files/zshrc;
   };
   home.sessionVariables = {
     EDITOR = "${pkgs.kakoune}/bin/kak";
