@@ -106,14 +106,6 @@
       };
     };
     fzf.enable = true;
-    gh = {
-      enable = true;
-      enableGitCredentialHelper = true;
-      settings.aliases = {
-        co = "pr checkout";
-        pv = "pr view";
-      };
-    };
     git = {
       enable = true;
       aliases = {
@@ -180,8 +172,25 @@
       };
       includes = [
         {
-          condition = "gitdir:github.com/";
-          contents.user.email = "github@i.m.mmlb.dev";
+          condition = "gitdir:github.com/equinixmetal/";
+          contents = {
+            user.email = "github@i.m.mmlb.dev";
+            core.sshCommand = ''ssh -o ControlPath="${config.xdg.cacheHome}/ssh/control-master/%C-emgh.sock" -i ~/.ssh/id_github_equinix_ed25519'';
+          };
+        }
+        {
+          condition = "gitdir:github.com/metal-toolbox/";
+          contents = {
+            user.email = "github@i.m.mmlb.dev";
+            core.sshCommand = ''ssh -o ControlPath="${config.xdg.cacheHome}/ssh/control-master/%C-emgh.sock" -i ~/.ssh/id_github_equinix_ed25519'';
+          };
+        }
+        {
+          condition = "gitdir:github.com/packethost/";
+          contents = {
+            user.email = "github@i.m.mmlb.dev";
+            core.sshCommand = ''ssh -o ControlPath="${config.xdg.cacheHome}/ssh/control-master/%C-emgh.sock" -i ~/.ssh/id_github_equinix_ed25519'';
+          };
         }
         {
           condition = "gitdir:gitlab.com/";
