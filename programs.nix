@@ -169,32 +169,46 @@
         submodule.fetchJobs = 8;
         submodule.recurse = true;
         user.useConfigOnly = true;
+        url."ssh://git@github.com/".insteadOf = "https://github.com/";
       };
       includes = [
         {
-          condition = "gitdir:github.com/equinixmetal/";
+          condition = "gitdir:github.com/";
           contents = {
             user.email = "github@i.m.mmlb.dev";
-            core.sshCommand = ''ssh -o ControlPath="${config.xdg.cacheHome}/ssh/control-master/%C-emgh.sock" -i ~/.ssh/id_github_equinix_ed25519'';
+          };
+        }
+        {
+          condition = "gitdir:github.com/equinixmetal/";
+          contents = {
+            core.sshCommand = "ssh -o BatchMode=yes -o ControlMaster=auto -o ControlPath=${config.xdg.cacheHome}/ssh/control-master/equinixmetal-github.sock -o PubKeyAuthentication=yes -o User=git -i ~/.ssh/id_github_equinix_ed25519";
+            user.email = "github@i.m.mmlb.dev";
           };
         }
         {
           condition = "gitdir:github.com/metal-toolbox/";
           contents = {
+            core.sshCommand = "ssh -o BatchMode=yes -o ControlMaster=auto -o ControlPath=${config.xdg.cacheHome}/ssh/control-master/equinixmetal-github.sock -o PubKeyAuthentication=yes -o User=git -i ~/.ssh/id_github_equinix_ed25519";
             user.email = "github@i.m.mmlb.dev";
-            core.sshCommand = ''ssh -o ControlPath="${config.xdg.cacheHome}/ssh/control-master/%C-emgh.sock" -i ~/.ssh/id_github_equinix_ed25519'';
           };
         }
         {
           condition = "gitdir:github.com/packethost/";
           contents = {
+            core.sshCommand = "ssh -o BatchMode=yes -o ControlMaster=auto -o ControlPath=${config.xdg.cacheHome}/ssh/control-master/equinixmetal-github.sock -o PubKeyAuthentication=yes -o User=git -i ~/.ssh/id_github_equinix_ed25519";
             user.email = "github@i.m.mmlb.dev";
-            core.sshCommand = ''ssh -o ControlPath="${config.xdg.cacheHome}/ssh/control-master/%C-emgh.sock" -i ~/.ssh/id_github_equinix_ed25519'';
           };
         }
         {
           condition = "gitdir:gitlab.com/";
           contents.user.email = "gitlab@i.m.mmlb.dev";
+        }
+        {
+          condition = "gitdir:go.equinixmetal.net/";
+          contents = {
+            core.sshCommand = "ssh -o BatchMode=yes -o ControlMaster=auto -o ControlPath=${config.xdg.cacheHome}/ssh/control-master/equinixmetal-github.sock -o PubKeyAuthentication=yes -o User=git -i ~/.ssh/id_github_equinix_ed25519";
+            user.email = "github@i.m.mmlb.dev";
+          };
         }
         {
           condition = "gitdir:sr.ht/";
