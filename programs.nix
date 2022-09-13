@@ -19,7 +19,7 @@
         set -x TMPDIR $XDG_RUNTIME_DIR/tmp
         test -d $TMPDIR; or mkdir -p $TMPDIR
         function update_prompt_prexec --on-event="fish_preexec"; update_prompt_time "$argv"; end
-        bind \f 'zi'
+        bind \f 'zi; commandline -f repaint'
       '';
       functions = {
         grep.body = ''
