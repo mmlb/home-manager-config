@@ -321,7 +321,7 @@ in {
       "foot/themes/gruvbox-dark".source = ./files/foot-theme-gruvbox-dark.ini;
       "foot/themes/gruvbox-light".source = ./files/foot-theme-gruvbox-light.ini;
       "helix/themes/gruvbox-dark.toml".source = ./files/helix-theme-gruvbox-dark.toml;
-      "helix/themes/gruvbox-ligh.toml".source = ./files/helix-theme-gruvbox-light.toml;
+      "helix/themes/gruvbox-light.toml".source = ./files/helix-theme-gruvbox-light.toml;
       "nix/nix.conf".text = ''
         cores = 0
       '';
