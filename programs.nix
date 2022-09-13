@@ -186,6 +186,13 @@
           };
         }
         {
+          condition = "gitdir:github.com/equinixmetal-archive/";
+          contents = {
+            core.sshCommand = "ssh -o ControlMaster=auto -o ControlPath=${config.xdg.cacheHome}/ssh/control-master/equinixmetal-github.sock -o PubKeyAuthentication=yes -o User=git -i ~/.ssh/id_github_equinix_ed25519";
+            user.email = "github@i.m.mmlb.dev";
+          };
+        }
+        {
           condition = "gitdir:github.com/metal-toolbox/";
           contents = {
             core.sshCommand = "ssh -o ControlMaster=auto -o ControlPath=${config.xdg.cacheHome}/ssh/control-master/equinixmetal-github.sock -o PubKeyAuthentication=yes -o User=git -i ~/.ssh/id_github_equinix_ed25519";
