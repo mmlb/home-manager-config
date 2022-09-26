@@ -99,6 +99,7 @@
           dpi-aware = "no";
           font = "VictorMono SemiBold:size=16";
           include = "~/.config/foot/theme";
+          word-delimiters = '',│`|"'()[]{}<>'';
         };
         mouse = {
           hide-when-typing = "yes";
