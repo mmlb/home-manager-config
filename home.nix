@@ -54,6 +54,7 @@ in {
       direnv
       dnsutils
       duperemove
+      easyeffects
       elvish
       entr
       eternal-terminal
@@ -117,7 +118,6 @@ in {
       pipewire
       pssh
       pstree
-      pulseeffects-pw
       python3
       python3Packages.bpython
       python3Packages.python-lsp-server
@@ -150,7 +150,7 @@ in {
       wofi
       xclip
       xdg-user-dirs
-      xdg_utils
+      xdg-utils
       xterm
     ]
     ++ goDevPackages
