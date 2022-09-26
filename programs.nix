@@ -104,6 +104,7 @@
         mouse = {
           hide-when-typing = "yes";
         };
+        scrollback.lines = 4096;
       };
     };
     fzf.enable = true;
