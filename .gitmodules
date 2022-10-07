@@ -1,4 +1,0 @@
-[submodule "nixpkgs"]
-	path = nixpkgs
-	url = https://github.com/mmlb/home-manager-nixpkgs
-	branch = working
